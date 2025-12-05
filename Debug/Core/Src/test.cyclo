@@ -1,0 +1,5 @@
+../Core/Src/test.c:83:6:initialstate	1
+../Core/Src/test.c:89:6:blink_blue	1
+../Core/Src/test.c:94:6:green_to_red	1
+../Core/Src/test.c:101:6:pedestrian_is_waiting	1
+../Core/Src/test.c:105:6:test_program	1

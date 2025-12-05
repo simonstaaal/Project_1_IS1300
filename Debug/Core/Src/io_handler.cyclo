@@ -1,0 +1,2 @@
+../Core/Src/io_handler.c:9:6:write_to_register	1
+../Core/Src/io_handler.c:34:6:read_input	6

@@ -1,0 +1,3 @@
+../Core/Src/trafficstates.c:12:9:toggle_bluelights	2
+../Core/Src/trafficstates.c:25:6:update_lights_hardware	9
+../Core/Src/trafficstates.c:67:6:update_traffic_states	52
