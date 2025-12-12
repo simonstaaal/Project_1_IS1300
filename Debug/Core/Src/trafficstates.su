@@ -1,3 +1,4 @@
-../Core/Src/trafficstates.c:12:9:toggle_bluelights	16	static
-../Core/Src/trafficstates.c:25:6:update_lights_hardware	16	static
-../Core/Src/trafficstates.c:67:6:update_traffic_states	32	static
+../Core/Src/trafficstates.c:13:9:toggle_bluelights	16	static
+../Core/Src/trafficstates.c:25:9:greenlights	24	static
+../Core/Src/trafficstates.c:37:6:update_lights_hardware	16	static
+../Core/Src/trafficstates.c:88:6:update_traffic_states	32	static

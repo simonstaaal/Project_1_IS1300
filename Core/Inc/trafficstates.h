@@ -19,7 +19,7 @@ extern uint32_t toggleFreq;
 extern uint32_t greenDelay;
 extern uint32_t redDelay;
 extern uint32_t redDelayMax;
-
+extern volatile uint8_t ped_green;
 
 /*Traffic lights*/
 typedef enum{
@@ -29,18 +29,18 @@ typedef enum{
 
 	EW_GREEN,
 	EW_YELLOW,
-	EW_RED,
+	EW_RED
 
 	//ALL_RED,
-	NS_PED_GREEN
+	//NS_PED_GREEN
 
 
 }Trafficlights;
 
 
 
-
-void update_lights_hardware(Trafficlights states, uint8_t blue_status);
+uint8_t greenlights(uint32_t *greenstart, uint32_t greenstop);
+void update_lights_hardware(Trafficlights states, uint8_t blue_status, uint8_t green_status);
 
 //void update_lights_hardware(Trafficlights states);
 void update_traffic_states(uint32_t *start_time, uint32_t current_time, Trafficlights *states, uint8_t *n_ped_wait, uint8_t car_ns, uint8_t car_ew);

@@ -46,18 +46,20 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-uint32_t pedestrianDelay = 10000;
+
+uint32_t pedestrianDelay = 5000;
 uint32_t walkingDelay = 4000;
-uint32_t orangeDelay = 500;
-uint32_t toggleFreq = 200;
-uint32_t greenDelay = 5000;
+uint32_t orangeDelay = 3000;
+uint32_t toggleFreq = 200; //DONE
+uint32_t greenDelay = 3000;
 uint32_t redDelay = 500;
-uint32_t redDelayMax = 6000;
+uint32_t redDelayMax = 5000;
 
 
 volatile uint8_t car_ns_waiting = 0;
 volatile uint8_t car_ew_waiting = 0;
 volatile uint8_t ped_ns_waiting = 0;
+volatile uint8_t ped_green = 0;
 
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
@@ -81,6 +83,11 @@ const osThreadAttr_t UserInput_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
+/* Definitions for SharedData */
+osMutexId_t SharedDataHandle;
+const osMutexAttr_t SharedData_attributes = {
+  .name = "SharedData"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -102,6 +109,9 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
+  /* Create the mutex(es) */
+  /* creation of SharedData */
+  SharedDataHandle = osMutexNew(&SharedData_attributes);
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
@@ -173,39 +183,56 @@ void TrafficState(void *argument)
   uint32_t start_time = xTaskGetTickCount() * portTICK_PERIOD_MS;
   uint32_t current_time = 0;
   uint8_t blue_status = 0;
+  uint8_t green_status = 0;
   static uint32_t blink_timer = 0;
+  static uint32_t green_timer = 0;
   static Trafficlights states = NS_GREEN;
   static uint8_t n_ped_wait = 0;
+
+  uint8_t car_ns = 0;
+  uint8_t car_ew = 0;
 
   for(;;)
   {
 
 	  current_time = xTaskGetTickCount() * portTICK_PERIOD_MS;
 
+	  if(osMutexAcquire(SharedDataHandle, osWaitForever) == osOK){
 
+		  car_ns = car_ns_waiting;
+		  car_ew = car_ew_waiting;
 
-	        uint8_t car_ns = car_ns_waiting;
-	        uint8_t car_ew = car_ew_waiting;
+		  if(ped_ns_waiting == 1){
+		 	    n_ped_wait = 1;
+		 	    ped_ns_waiting = 0;
 
-	        if(ped_ns_waiting == 1){
-	             n_ped_wait = 1;
-	             ped_ns_waiting = 0;
-
-	        }
-
+		 }
+		  osMutexRelease(SharedDataHandle); // Kanske kan flytta ned under update_lightshardware
+	  }
 
 	        update_traffic_states(&start_time, current_time,  &states,  &n_ped_wait,  car_ns,  car_ew);
 
-
-
-	        // Hantera blåljus här (som vi diskuterade förut)
 	        if(n_ped_wait){
 	            blue_status = toggle_bluelights(&blink_timer, current_time);
 	        }
 	        else{
 	        	blue_status = 0;
 	        }
-	        update_lights_hardware(states, blue_status);
+	        if(ped_green){
+	        	if(green_timer == 0){
+	        		green_timer = current_time;
+	        	}
+	        	green_status = greenlights(&green_timer, current_time);
+
+	        	if(green_status == 0){
+	        		ped_green = 0;
+	        		green_timer = 0;
+	        	}
+	        }else{
+	        	green_status = 0;
+	        }
+
+	        update_lights_hardware(states, blue_status, green_status);
 	       //n_ped_wait = 0;
 
 	        osDelay(10);
@@ -224,6 +251,9 @@ void TrafficState(void *argument)
 void Userinputs(void *argument)
 {
   /* USER CODE BEGIN Userinputs */
+	uint8_t temp_nsPed_waiting = 0;
+	uint8_t temp_ewCar_waiting = 0;
+	uint8_t temp_nsCar_waiting = 0;
 
   /* Infinite loop */
   for(;;)
@@ -234,24 +264,36 @@ void Userinputs(void *argument)
 	            if(read_input(NORTH_PEDESTRIAN) == PRESSED)
 	            {
 
-	                ped_ns_waiting = 1;
+	            	temp_nsPed_waiting = 1;
 	            }
 
 
 	        }
 
 	        if((read_input(CAR_NORTH) == PRESSED) || (read_input(CAR_SOUTH) == PRESSED)){
-	            car_ns_waiting = 1;
+	        	temp_nsCar_waiting = 1;
 	        } else {
-	            car_ns_waiting = 0;
+	        	temp_nsCar_waiting = 0;
 	        }
 
 
 	        if((read_input(CAR_WEST) == PRESSED) || (read_input(CAR_EAST) == PRESSED)){
-	            car_ew_waiting = 1;
+	        	temp_ewCar_waiting = 1;
 	        } else {
-	            car_ew_waiting = 0;
+	        	temp_ewCar_waiting = 0;
 	        }
+
+	        if(osMutexAcquire(SharedDataHandle, osWaitForever) == osOK){
+	        	car_ns_waiting = temp_nsCar_waiting;
+	        	car_ew_waiting = temp_ewCar_waiting;
+
+	        	if(temp_nsPed_waiting == 1){
+	        		ped_ns_waiting = 1;
+	        		temp_nsPed_waiting = 0;
+	        	}
+	        	osMutexRelease(SharedDataHandle);
+	        }
+
 
 	        osDelay(10); // Kör ca 100 gånger i sekunden
 	    }
