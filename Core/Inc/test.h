@@ -19,40 +19,22 @@
 #include "FreeRTOS.h"
 #include "io_handler.h"
 /*Bitcombinations for LEDS*/
-#define ZERO 0
-
-#define NORTH_GREEN 0b00100000  //Shiftregister 3
-#define NORTH_YELLOW 0b00010001 //Shiftregister 3
-#define NORTH_RED 0b000001001//Shiftregister  3
 
 
 
-#define SOUTH_GREEN 0b00001000   //Shiftregister 2
-#define SOUTH_YELLOW 0b00001010 //Shiftregister 2
-#define SOUTH_RED 0b00001001 //Shiftregister 2
-
-#define NORTH_PEDESTRIAN_RED 0b00001000 //Shiftregister 2
-
-#define NORTH_BLUE 0b00100000 //Shiftregister 2
 
 
-#define INIT_NORTH_GREEN 0b00100001 //sr3
-#define INIT_SOUTH_GREEN 0b00001100 //sr2 pl2_red & south_green
 
-#define PED_GREEN 0b00010001
+
+
+
 
 #define PRESSED 0
 
 
-#define WEST_GREEN 0b00001100 //sr3 gjort rätt kanske?
-#define WEST_YELLOW 0b00001010 //sr3
-#define WEST_RED 0b00001001 //sr3
 
 
 // Rätt
-#define EAST_GREEN 0b00001100 //sr1  pl1_red //kanske rätt
-#define EAST_YELLOW 0b00001010 //sr1 pl1_red
-#define EAST_RED 0b00001001 //sr1 pl1_red
 
 
 // test defines

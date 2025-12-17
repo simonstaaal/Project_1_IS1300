@@ -1,0 +1,68 @@
+\doxysection{Core/\+Src/trafficstates.c File Reference}
+\hypertarget{trafficstates_8c}{}\label{trafficstates_8c}\index{Core/Src/trafficstates.c@{Core/Src/trafficstates.c}}
+{\ttfamily \#include "{}trafficstates.\+h"{}}\newline
+{\ttfamily \#include "{}test.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_a956485862221fd8cfc7af9fc46aa9cb1}{toggle\+\_\+bluelights}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}blinkstart, uint32\+\_\+t blinkstop)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_aedb2feb8591c670a3e39eafd0d7441e6}{greenlights}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}greenstart, uint32\+\_\+t greenstop)
+\item 
+void \mbox{\hyperlink{trafficstates_8c_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44}{update\+\_\+lights\+\_\+hardware}} (\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} states, uint8\+\_\+t blue\+\_\+status, uint8\+\_\+t green\+\_\+status)
+\item 
+void \mbox{\hyperlink{trafficstates_8c_acc9158c99f70e05fb113c44488058527}{update\+\_\+traffic\+\_\+states}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}start\+\_\+time, uint32\+\_\+t current\+\_\+time, \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} \texorpdfstring{$\ast$}{*}states, uint8\+\_\+t \texorpdfstring{$\ast$}{*}n\+\_\+ped\+\_\+wait, uint8\+\_\+t car\+\_\+ns, uint8\+\_\+t car\+\_\+ew)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_ae5198cfaaa24f1935ed35da04239da4f}{changedirection}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_ae9b5377ed63d77910e5453e5b44e00df}{pedestrianlight}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{trafficstates_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{trafficstates_8c_aedb2feb8591c670a3e39eafd0d7441e6}\index{trafficstates.c@{trafficstates.c}!greenlights@{greenlights}}
+\index{greenlights@{greenlights}!trafficstates.c@{trafficstates.c}}
+\doxysubsubsection{\texorpdfstring{greenlights()}{greenlights()}}
+{\footnotesize\ttfamily \label{trafficstates_8c_aedb2feb8591c670a3e39eafd0d7441e6} 
+uint8\+\_\+t greenlights (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{greenstart}{, }\item[{uint32\+\_\+t}]{greenstop}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trafficstates_8c_a956485862221fd8cfc7af9fc46aa9cb1}\index{trafficstates.c@{trafficstates.c}!toggle\_bluelights@{toggle\_bluelights}}
+\index{toggle\_bluelights@{toggle\_bluelights}!trafficstates.c@{trafficstates.c}}
+\doxysubsubsection{\texorpdfstring{toggle\_bluelights()}{toggle\_bluelights()}}
+{\footnotesize\ttfamily \label{trafficstates_8c_a956485862221fd8cfc7af9fc46aa9cb1} 
+uint8\+\_\+t toggle\+\_\+bluelights (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{blinkstart}{, }\item[{uint32\+\_\+t}]{blinkstop}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trafficstates_8c_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44}\index{trafficstates.c@{trafficstates.c}!update\_lights\_hardware@{update\_lights\_hardware}}
+\index{update\_lights\_hardware@{update\_lights\_hardware}!trafficstates.c@{trafficstates.c}}
+\doxysubsubsection{\texorpdfstring{update\_lights\_hardware()}{update\_lights\_hardware()}}
+{\footnotesize\ttfamily \label{trafficstates_8c_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44} 
+void update\+\_\+lights\+\_\+hardware (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}}}]{states}{, }\item[{uint8\+\_\+t}]{blue\+\_\+status}{, }\item[{uint8\+\_\+t}]{green\+\_\+status}{}\end{DoxyParamCaption})}
+
+\Hypertarget{trafficstates_8c_acc9158c99f70e05fb113c44488058527}\index{trafficstates.c@{trafficstates.c}!update\_traffic\_states@{update\_traffic\_states}}
+\index{update\_traffic\_states@{update\_traffic\_states}!trafficstates.c@{trafficstates.c}}
+\doxysubsubsection{\texorpdfstring{update\_traffic\_states()}{update\_traffic\_states()}}
+{\footnotesize\ttfamily \label{trafficstates_8c_acc9158c99f70e05fb113c44488058527} 
+void update\+\_\+traffic\+\_\+states (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{start\+\_\+time}{, }\item[{uint32\+\_\+t}]{current\+\_\+time}{, }\item[{\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} \texorpdfstring{$\ast$}{*}}]{states}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{n\+\_\+ped\+\_\+wait}{, }\item[{uint8\+\_\+t}]{car\+\_\+ns}{, }\item[{uint8\+\_\+t}]{car\+\_\+ew}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{trafficstates_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{trafficstates_8c_ae5198cfaaa24f1935ed35da04239da4f}\index{trafficstates.c@{trafficstates.c}!changedirection@{changedirection}}
+\index{changedirection@{changedirection}!trafficstates.c@{trafficstates.c}}
+\doxysubsubsection{\texorpdfstring{changedirection}{changedirection}}
+{\footnotesize\ttfamily \label{trafficstates_8c_ae5198cfaaa24f1935ed35da04239da4f} 
+uint8\+\_\+t changedirection = 0}
+
+\Hypertarget{trafficstates_8c_ae9b5377ed63d77910e5453e5b44e00df}\index{trafficstates.c@{trafficstates.c}!pedestrianlight@{pedestrianlight}}
+\index{pedestrianlight@{pedestrianlight}!trafficstates.c@{trafficstates.c}}
+\doxysubsubsection{\texorpdfstring{pedestrianlight}{pedestrianlight}}
+{\footnotesize\ttfamily \label{trafficstates_8c_ae9b5377ed63d77910e5453e5b44e00df} 
+uint8\+\_\+t pedestrianlight}
+

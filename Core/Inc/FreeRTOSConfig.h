@@ -44,9 +44,6 @@
  *----------------------------------------------------------*/
 
 /* USER CODE BEGIN Includes */
-#include "test.h"
-#include "trafficstates.h"
-#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Ensure definitions are only used by the compiler, and not by the assembler. */

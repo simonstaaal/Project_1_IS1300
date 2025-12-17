@@ -79,7 +79,7 @@ void statemachine(void){
 }
 */
 
-
+/*
 void initialstate(void){
 
 	write_to_register(ZERO, SOUTH_GREEN,NORTH_GREEN);
@@ -109,12 +109,13 @@ void test_program(void)
 	statemachine();
 	//green_to_red();
 
-	/*bool north_ped = read_pedestrian_input(NORTH_PEDESTRIAN);
+	bool north_ped = read_pedestrian_input(NORTH_PEDESTRIAN);
 
 	if(north_ped == 0){
 		write_to_register(ZERO,NORTH_GREEN,SOUTH_GREEN);
 	}
 
-	}*/
+	}
 	}
 }
+*/

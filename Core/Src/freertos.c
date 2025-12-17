@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include "trafficstates.h"
 #include "io_handler.h"
+#include "usart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,19 +48,33 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 
-uint32_t pedestrianDelay = 5000;
-uint32_t walkingDelay = 4000;
-uint32_t orangeDelay = 3000;
-uint32_t toggleFreq = 200; //DONE
+/** @name UART communication */
+/** @{ */
+uint8_t msg_failed = 0x00;  /**< Error code: Returns if Message-ID is invalid or value is outside limits */
+uint8_t msg_success = 0x01; /**< Success code: Returns if received command is valid */
+uint8_t rx_data[4];			/**< Buffer for incomming UART data. [0] = ID , [1] = 0x00 , [2],[3] = value */
+ITStatus UartReady = RESET; /**< is set to SET by UART callback when a package is recieved. */
+/** @} */
+
+//Variables changed by UART
+ uint32_t toggleFreq = 200;
+ uint32_t pedestrianDelay = 5000;
+ uint32_t walkingDelay = 4000;
+ uint32_t orangeDelay = 3000;
+
+//Delay variables for specific lights
 uint32_t greenDelay = 3000;
 uint32_t redDelay = 500;
-uint32_t redDelayMax = 5000;
+uint32_t redDelayMax = 6000;
 
 
-volatile uint8_t car_ns_waiting = 0;
-volatile uint8_t car_ew_waiting = 0;
-volatile uint8_t ped_ns_waiting = 0;
-volatile uint8_t ped_green = 0;
+//flags for indication of incomming traffic/ pedestrians
+uint8_t is_car_ns_waiting = 0;
+uint8_t is_car_ew_waiting = 0;
+uint8_t is_ped_ns_waiting = 0;
+uint8_t ped_green = 0;
+
+
 
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
@@ -179,53 +194,64 @@ void TrafficState(void *argument)
   /* USER CODE BEGIN TrafficState */
   /* Infinite loop */
 
-  //Timer for switching states
+  // UART receive message
+  HAL_UART_Receive_IT(&huart2, rx_data, 4);
+
+  //Tick counter, this works as our clock in the system
   uint32_t start_time = xTaskGetTickCount() * portTICK_PERIOD_MS;
   uint32_t current_time = 0;
+
   uint8_t blue_status = 0;
   uint8_t green_status = 0;
+
   static uint32_t blink_timer = 0;
   static uint32_t green_timer = 0;
   static Trafficlights states = NS_GREEN;
-  static uint8_t n_ped_wait = 0;
 
-  uint8_t car_ns = 0;
-  uint8_t car_ew = 0;
+  static uint8_t n_ped_wait = NO;
+  uint8_t car_ns = NO;
+  uint8_t car_ew = NO;
 
   for(;;)
   {
+	  if(UartReady == SET){
+
+		  update_time(rx_data);
+		  UartReady = RESET;
+	  }
+
 
 	  current_time = xTaskGetTickCount() * portTICK_PERIOD_MS;
 
 	  if(osMutexAcquire(SharedDataHandle, osWaitForever) == osOK){
 
-		  car_ns = car_ns_waiting;
-		  car_ew = car_ew_waiting;
+		  car_ns = is_car_ns_waiting;
+		  car_ew = is_car_ew_waiting;
 
-		  if(ped_ns_waiting == 1){
-		 	    n_ped_wait = 1;
-		 	    ped_ns_waiting = 0;
+		  if(is_ped_ns_waiting == YES){
+		 	    n_ped_wait = YES;
+		 	    is_ped_ns_waiting = NO;
 
 		 }
-		  osMutexRelease(SharedDataHandle); // Kanske kan flytta ned under update_lightshardware
+		  osMutexRelease(SharedDataHandle);
 	  }
 
 	        update_traffic_states(&start_time, current_time,  &states,  &n_ped_wait,  car_ns,  car_ew);
 
-	        if(n_ped_wait){
+	        if(n_ped_wait == YES){
 	            blue_status = toggle_bluelights(&blink_timer, current_time);
 	        }
 	        else{
 	        	blue_status = 0;
 	        }
-	        if(ped_green){
+	        if(ped_green == YES){
 	        	if(green_timer == 0){
 	        		green_timer = current_time;
 	        	}
 	        	green_status = greenlights(&green_timer, current_time);
 
 	        	if(green_status == 0){
-	        		ped_green = 0;
+	        		ped_green = NO;
 	        		green_timer = 0;
 	        	}
 	        }else{
@@ -233,7 +259,7 @@ void TrafficState(void *argument)
 	        }
 
 	        update_lights_hardware(states, blue_status, green_status);
-	       //n_ped_wait = 0;
+
 
 	        osDelay(10);
 
@@ -251,45 +277,47 @@ void TrafficState(void *argument)
 void Userinputs(void *argument)
 {
   /* USER CODE BEGIN Userinputs */
-	uint8_t temp_nsPed_waiting = 0;
-	uint8_t temp_ewCar_waiting = 0;
-	uint8_t temp_nsCar_waiting = 0;
+	uint8_t is_temp_nsPed_waiting = NO;
+	uint8_t is_temp_ewCar_waiting = NO;
+	uint8_t is_temp_nsCar_waiting = NO;
 
   /* Infinite loop */
   for(;;)
   {
-	        if(read_input(NORTH_PEDESTRIAN) == PRESSED)
+
+
+	        if(read_input(NORTH_PEDESTRIAN) == DETECTED)
 	        {
-	            osDelay(20); // Enkel avstudsning (vänta ut studsar)
-	            if(read_input(NORTH_PEDESTRIAN) == PRESSED)
+	            osDelay(20);
+	            if(read_input(NORTH_PEDESTRIAN) == DETECTED)
 	            {
 
-	            	temp_nsPed_waiting = 1;
+	            	is_temp_nsPed_waiting = YES;
 	            }
 
 
 	        }
 
-	        if((read_input(CAR_NORTH) == PRESSED) || (read_input(CAR_SOUTH) == PRESSED)){
-	        	temp_nsCar_waiting = 1;
+	        if((read_input(CAR_NORTH) == DETECTED) || (read_input(CAR_SOUTH) == DETECTED)){
+	        	is_temp_nsCar_waiting = YES;
 	        } else {
-	        	temp_nsCar_waiting = 0;
+	        	is_temp_nsCar_waiting = NO;
 	        }
 
 
-	        if((read_input(CAR_WEST) == PRESSED) || (read_input(CAR_EAST) == PRESSED)){
-	        	temp_ewCar_waiting = 1;
+	        if((read_input(CAR_WEST) == DETECTED) || (read_input(CAR_EAST) == DETECTED)){
+	        	is_temp_ewCar_waiting = YES;
 	        } else {
-	        	temp_ewCar_waiting = 0;
+	        	is_temp_ewCar_waiting = NO;
 	        }
 
 	        if(osMutexAcquire(SharedDataHandle, osWaitForever) == osOK){
-	        	car_ns_waiting = temp_nsCar_waiting;
-	        	car_ew_waiting = temp_ewCar_waiting;
+	        	is_car_ns_waiting = is_temp_nsCar_waiting;
+	        	is_car_ew_waiting = is_temp_ewCar_waiting;
 
-	        	if(temp_nsPed_waiting == 1){
-	        		ped_ns_waiting = 1;
-	        		temp_nsPed_waiting = 0;
+	        	if(is_temp_nsPed_waiting == YES){
+	        		is_ped_ns_waiting = YES;
+	        		is_temp_nsPed_waiting = NO;
 	        	}
 	        	osMutexRelease(SharedDataHandle);
 	        }
@@ -304,6 +332,20 @@ void Userinputs(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart2)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(huart2);
+
+  /* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_UART_RxCpltCallback can be implemented in the user file.
+   */
+  UartReady = SET;
+
+
+  HAL_UART_Receive_IT(huart2, rx_data, 4);
+}
 
 /* USER CODE END Application */
 

@@ -1,0 +1,9 @@
+var searchData=
+[
+  ['update_5flights_5fhardware_0',['update_lights_hardware',['../trafficstates_8c.html#a6a6fb52ff3d0ac7ef0c6f9bb7e24db44',1,'update_lights_hardware(Trafficlights states, uint8_t blue_status, uint8_t green_status):&#160;trafficstates.c'],['../trafficstates_8h.html#a6a6fb52ff3d0ac7ef0c6f9bb7e24db44',1,'update_lights_hardware(Trafficlights states, uint8_t blue_status, uint8_t green_status):&#160;trafficstates.c']]],
+  ['update_5ftime_1',['update_time',['../io__handler_8c.html#a7090eb01ca7a8fdab0df9eb9e3e7ce7f',1,'update_time(uint8_t *rx_data):&#160;io_handler.c'],['../io__handler_8h.html#a7090eb01ca7a8fdab0df9eb9e3e7ce7f',1,'update_time(uint8_t *rx_data):&#160;io_handler.c']]],
+  ['update_5ftraffic_5fstates_2',['update_traffic_states',['../trafficstates_8c.html#acc9158c99f70e05fb113c44488058527',1,'update_traffic_states(uint32_t *start_time, uint32_t current_time, Trafficlights *states, uint8_t *n_ped_wait, uint8_t car_ns, uint8_t car_ew):&#160;trafficstates.c'],['../trafficstates_8h.html#acc9158c99f70e05fb113c44488058527',1,'update_traffic_states(uint32_t *start_time, uint32_t current_time, Trafficlights *states, uint8_t *n_ped_wait, uint8_t car_ns, uint8_t car_ew):&#160;trafficstates.c']]],
+  ['usagefault_5fhandler_3',['UsageFault_Handler',['../stm32l4xx__it_8c.html#a1d98923de2ed6b7309b66f9ba2971647',1,'UsageFault_Handler(void):&#160;stm32l4xx_it.c'],['../stm32l4xx__it_8h.html#a1d98923de2ed6b7309b66f9ba2971647',1,'UsageFault_Handler(void):&#160;stm32l4xx_it.c']]],
+  ['usart2_5firqhandler_4',['USART2_IRQHandler',['../stm32l4xx__it_8c.html#a0ca6fd0e6f77921dd1123539857ba0a8',1,'USART2_IRQHandler(void):&#160;stm32l4xx_it.c'],['../stm32l4xx__it_8h.html#a0ca6fd0e6f77921dd1123539857ba0a8',1,'USART2_IRQHandler(void):&#160;stm32l4xx_it.c']]],
+  ['userinputs_5',['Userinputs',['../freertos_8c.html#a8784f1f2c238f1c5816419cb1012be02',1,'freertos.c']]]
+];

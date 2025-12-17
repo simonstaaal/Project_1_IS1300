@@ -1,0 +1,66 @@
+\doxysection{Core/\+Src/spi.c File Reference}
+\hypertarget{spi_8c}{}\label{spi_8c}\index{Core/Src/spi.c@{Core/Src/spi.c}}
+
+
+This file provides code for the configuration of the SPI instances.  
+
+
+{\ttfamily \#include "{}spi.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{spi_8c_a03aff927b2793cac09e443299c6d6e7e}{MX\+\_\+\+SPI3\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{spi_8c_a8e1dadd744299fa6f8bca0e1bcbd2c00}{HAL\+\_\+\+SPI\+\_\+\+Msp\+Init}} (SPI\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}spi\+Handle)
+\item 
+void \mbox{\hyperlink{spi_8c_af9af6cae4cb9386b709196d3a3ab4f78}{HAL\+\_\+\+SPI\+\_\+\+Msp\+De\+Init}} (SPI\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}spi\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+SPI\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{spi_8c_aec51920045aad7f70cbfd1f58228d866}{hspi3}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the SPI instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2025 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\label{doc-func-members}
+\Hypertarget{spi_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{spi_8c_af9af6cae4cb9386b709196d3a3ab4f78}\index{spi.c@{spi.c}!HAL\_SPI\_MspDeInit@{HAL\_SPI\_MspDeInit}}
+\index{HAL\_SPI\_MspDeInit@{HAL\_SPI\_MspDeInit}!spi.c@{spi.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_SPI\_MspDeInit()}{HAL\_SPI\_MspDeInit()}}
+{\footnotesize\ttfamily \label{spi_8c_af9af6cae4cb9386b709196d3a3ab4f78} 
+void HAL\+\_\+\+SPI\+\_\+\+Msp\+De\+Init (\begin{DoxyParamCaption}\item[{SPI\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{spi\+Handle}{}\end{DoxyParamCaption})}
+
+SPI3 GPIO Configuration PC10 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} SPI3\+\_\+\+SCK PB5 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} SPI3\+\_\+\+MOSI\Hypertarget{spi_8c_a8e1dadd744299fa6f8bca0e1bcbd2c00}\index{spi.c@{spi.c}!HAL\_SPI\_MspInit@{HAL\_SPI\_MspInit}}
+\index{HAL\_SPI\_MspInit@{HAL\_SPI\_MspInit}!spi.c@{spi.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_SPI\_MspInit()}{HAL\_SPI\_MspInit()}}
+{\footnotesize\ttfamily \label{spi_8c_a8e1dadd744299fa6f8bca0e1bcbd2c00} 
+void HAL\+\_\+\+SPI\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{SPI\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{spi\+Handle}{}\end{DoxyParamCaption})}
+
+SPI3 GPIO Configuration PC10 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} SPI3\+\_\+\+SCK PB5 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} SPI3\+\_\+\+MOSI\Hypertarget{spi_8c_a03aff927b2793cac09e443299c6d6e7e}\index{spi.c@{spi.c}!MX\_SPI3\_Init@{MX\_SPI3\_Init}}
+\index{MX\_SPI3\_Init@{MX\_SPI3\_Init}!spi.c@{spi.c}}
+\doxysubsubsection{\texorpdfstring{MX\_SPI3\_Init()}{MX\_SPI3\_Init()}}
+{\footnotesize\ttfamily \label{spi_8c_a03aff927b2793cac09e443299c6d6e7e} 
+void MX\+\_\+\+SPI3\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{spi_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{spi_8c_aec51920045aad7f70cbfd1f58228d866}\index{spi.c@{spi.c}!hspi3@{hspi3}}
+\index{hspi3@{hspi3}!spi.c@{spi.c}}
+\doxysubsubsection{\texorpdfstring{hspi3}{hspi3}}
+{\footnotesize\ttfamily \label{spi_8c_aec51920045aad7f70cbfd1f58228d866} 
+SPI\+\_\+\+Handle\+Type\+Def hspi3}
+

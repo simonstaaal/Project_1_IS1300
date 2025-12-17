@@ -10,7 +10,7 @@ void write_to_register(uint8_t r1,uint8_t r2, uint8_t r3) {
 
 			uint8_t databits[3];
 
-			databits[0] = r3; //register 3
+			databits[0] = r3;
 			databits[1] = r2;
 			databits[2] = r1;
 
@@ -30,7 +30,6 @@ void write_to_register(uint8_t r1,uint8_t r2, uint8_t r3) {
 
 
 
-
 bool read_input(Inputs button){
 
 	switch(button){
@@ -39,9 +38,6 @@ bool read_input(Inputs button){
 		return(HAL_GPIO_ReadPin(PL2_switch_GPIO_Port, PL2_switch_Pin));
 		break;
 
-	case WEST_PEDESTRIAN:
-		//returnfunktion
-		break;
 
 	case CAR_NORTH:
 
@@ -69,4 +65,29 @@ bool read_input(Inputs button){
 
 }
 
+
+void update_time(uint8_t *rx_data){
+
+	uint16_t value = (rx_data[2] << 8) | rx_data[3];
+
+	if(rx_data[0] == 0x01){
+		toggleFreq =  value;
+		HAL_UART_Transmit(&huart2, &msg_success, 1,HAL_MAX_DELAY);
+	}
+	else if(rx_data[0] == 0x02){
+		pedestrianDelay = value;
+		HAL_UART_Transmit(&huart2, &msg_success, 1, HAL_MAX_DELAY);
+	}
+	else if(rx_data[0] ==0x03){
+		walkingDelay = value;
+		HAL_UART_Transmit(&huart2, &msg_success, 1, HAL_MAX_DELAY);
+	}
+	else if(rx_data[0] == 0x04){
+		orangeDelay = value;
+		HAL_UART_Transmit(&huart2, &msg_success, 1, HAL_MAX_DELAY);
+	}
+	else{
+		HAL_UART_Transmit(&huart2, &msg_failed, 1, HAL_MAX_DELAY);
+	}
+}
 

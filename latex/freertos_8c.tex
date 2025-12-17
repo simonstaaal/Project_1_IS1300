@@ -1,0 +1,350 @@
+\doxysection{Core/\+Src/freertos.c File Reference}
+\hypertarget{freertos_8c}{}\label{freertos_8c}\index{Core/Src/freertos.c@{Core/Src/freertos.c}}
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}task.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os.\+h"{}}\newline
+{\ttfamily \#include "{}trafficstates.\+h"{}}\newline
+{\ttfamily \#include "{}io\+\_\+handler.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{freertos_8c_a99d0fdb0434092bcb24d9c9af917e4e9}{Start\+Default\+Task}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the default\+Task thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8c_a1604d1a76138812de410c75c55c3226e}{Traffic\+State}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the Traffic\+States thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8c_a8784f1f2c238f1c5816419cb1012be02}{Userinputs}} (void \texorpdfstring{$\ast$}{*}argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the User\+Input thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8c_abade755e13d07c10889ae83143656158}{MX\+\_\+\+FREERTOS\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{freertos_8c_a37adccfb81027787e44e03a11be16fed}{HAL\+\_\+\+UART\+\_\+\+Rx\+Cplt\+Callback}} (UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{stm32l4xx__it_8c_aa9479c261d65eecedd3d9582f7f0f89c}{huart2}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27}{toggle\+Freq}} = 200
+\item 
+uint32\+\_\+t \mbox{\hyperlink{freertos_8c_a6b59f75369700988fa3f2dfa5c225354}{pedestrian\+Delay}} = 5000
+\item 
+uint32\+\_\+t \mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{walking\+Delay}} = 4000
+\item 
+uint32\+\_\+t \mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orange\+Delay}} = 3000
+\item 
+uint32\+\_\+t \mbox{\hyperlink{freertos_8c_aacd61ac1bbac156259774e474f6c501f}{green\+Delay}} = 3000
+\item 
+uint32\+\_\+t \mbox{\hyperlink{freertos_8c_a62170ad8bb4cb861ba9b2ff06d8a97c3}{red\+Delay}} = 500
+\item 
+uint32\+\_\+t \mbox{\hyperlink{freertos_8c_aa42e6e3c5fb6a18cd287a0167a150602}{red\+Delay\+Max}} = 6000
+\item 
+uint8\+\_\+t \mbox{\hyperlink{freertos_8c_ab7237d8693493b99cbd54eceaa5be728}{is\+\_\+car\+\_\+ns\+\_\+waiting}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{freertos_8c_a07ccd3c0f617bddd39d093910d3221ae}{is\+\_\+car\+\_\+ew\+\_\+waiting}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{freertos_8c_a4231e2f0f0de8aaea95db8b1ee010869}{is\+\_\+ped\+\_\+ns\+\_\+waiting}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{freertos_8c_afdc417d2e606c678717ae6c984959f3c}{ped\+\_\+green}} = 0
+\item 
+os\+Thread\+Id\+\_\+t \mbox{\hyperlink{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}{default\+Task\+Handle}}
+\item 
+const os\+Thread\+Attr\+\_\+t \mbox{\hyperlink{freertos_8c_a25fbb54afdba71c24ba51ed50166ac8d}{default\+Task\+\_\+attributes}}
+\item 
+os\+Thread\+Id\+\_\+t \mbox{\hyperlink{freertos_8c_a97254cae64deebc5b0ba60f8f9a9c05f}{Traffic\+States\+Handle}}
+\item 
+const os\+Thread\+Attr\+\_\+t \mbox{\hyperlink{freertos_8c_a8bd115a2bb87df34db88d7249d7eeeb1}{Traffic\+States\+\_\+attributes}}
+\item 
+os\+Thread\+Id\+\_\+t \mbox{\hyperlink{freertos_8c_a2e41409556accc6d8a0395f6ea0ff89e}{User\+Input\+Handle}}
+\item 
+const os\+Thread\+Attr\+\_\+t \mbox{\hyperlink{freertos_8c_aa1202f429277eba714201003a0e3239a}{User\+Input\+\_\+attributes}}
+\item 
+os\+Mutex\+Id\+\_\+t \mbox{\hyperlink{freertos_8c_a86a239b9f60605dc32847d6e4afc389d}{Shared\+Data\+Handle}}
+\item 
+const os\+Mutex\+Attr\+\_\+t \mbox{\hyperlink{freertos_8c_a6948d89c4415ff8091b3136abb4cb6a7}{Shared\+Data\+\_\+attributes}}
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ UART communication}\par
+{\em File Name \+: \doxylink{freertos_8c}{freertos.\+c} Description \+: Code for freertos applications
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2025 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. }\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{freertos_8c_acf2c8910e5ef71730f1b5eaaed6c496a}{msg\+\_\+failed}} = 0x00
+\item 
+uint8\+\_\+t \mbox{\hyperlink{freertos_8c_a6586bd3d35d808967fb8459f25922367}{msg\+\_\+success}} = 0x01
+\item 
+uint8\+\_\+t \mbox{\hyperlink{freertos_8c_a832bfefba0c3f651c05cfc21aad39dd0}{rx\+\_\+data}} \mbox{[}4\mbox{]}
+\item 
+ITStatus \mbox{\hyperlink{freertos_8c_a9b2653317ef098565aa2c15e5669ec4b}{Uart\+Ready}} = RESET
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\label{doc-func-members}
+\Hypertarget{freertos_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{freertos_8c_a37adccfb81027787e44e03a11be16fed}\index{freertos.c@{freertos.c}!HAL\_UART\_RxCpltCallback@{HAL\_UART\_RxCpltCallback}}
+\index{HAL\_UART\_RxCpltCallback@{HAL\_UART\_RxCpltCallback}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_UART\_RxCpltCallback()}{HAL\_UART\_RxCpltCallback()}}
+{\footnotesize\ttfamily \label{freertos_8c_a37adccfb81027787e44e03a11be16fed} 
+void HAL\+\_\+\+UART\+\_\+\+Rx\+Cplt\+Callback (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{huart2}{}\end{DoxyParamCaption})}
+
+\Hypertarget{freertos_8c_abade755e13d07c10889ae83143656158}\index{freertos.c@{freertos.c}!MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}}
+\index{MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{MX\_FREERTOS\_Init()}{MX\_FREERTOS\_Init()}}
+{\footnotesize\ttfamily \label{freertos_8c_abade755e13d07c10889ae83143656158} 
+void MX\+\_\+\+FREERTOS\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{freertos_8c_a99d0fdb0434092bcb24d9c9af917e4e9}\index{freertos.c@{freertos.c}!StartDefaultTask@{StartDefaultTask}}
+\index{StartDefaultTask@{StartDefaultTask}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{StartDefaultTask()}{StartDefaultTask()}}
+{\footnotesize\ttfamily \label{freertos_8c_a99d0fdb0434092bcb24d9c9af917e4e9} 
+void Start\+Default\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{argument}{}\end{DoxyParamCaption})}
+
+
+
+Function implementing the default\+Task thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{freertos_8c_a1604d1a76138812de410c75c55c3226e}\index{freertos.c@{freertos.c}!TrafficState@{TrafficState}}
+\index{TrafficState@{TrafficState}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{TrafficState()}{TrafficState()}}
+{\footnotesize\ttfamily \label{freertos_8c_a1604d1a76138812de410c75c55c3226e} 
+void Traffic\+State (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{argument}{}\end{DoxyParamCaption})}
+
+
+
+Function implementing the Traffic\+States thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{freertos_8c_a8784f1f2c238f1c5816419cb1012be02}\index{freertos.c@{freertos.c}!Userinputs@{Userinputs}}
+\index{Userinputs@{Userinputs}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{Userinputs()}{Userinputs()}}
+{\footnotesize\ttfamily \label{freertos_8c_a8784f1f2c238f1c5816419cb1012be02} 
+void Userinputs (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{argument}{}\end{DoxyParamCaption})}
+
+
+
+Function implementing the User\+Input thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\label{doc-var-members}
+\Hypertarget{freertos_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{freertos_8c_a25fbb54afdba71c24ba51ed50166ac8d}\index{freertos.c@{freertos.c}!defaultTask\_attributes@{defaultTask\_attributes}}
+\index{defaultTask\_attributes@{defaultTask\_attributes}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{defaultTask\_attributes}{defaultTask\_attributes}}
+{\footnotesize\ttfamily \label{freertos_8c_a25fbb54afdba71c24ba51ed50166ac8d} 
+const os\+Thread\+Attr\+\_\+t default\+Task\+\_\+attributes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ .name\ =\ \textcolor{stringliteral}{"{}defaultTask"{}},}
+\DoxyCodeLine{\ \ .stack\_size\ =\ 128\ *\ 4,}
+\DoxyCodeLine{\ \ .priority\ =\ (osPriority\_t)\ osPriorityNormal,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74}\index{freertos.c@{freertos.c}!defaultTaskHandle@{defaultTaskHandle}}
+\index{defaultTaskHandle@{defaultTaskHandle}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{defaultTaskHandle}{defaultTaskHandle}}
+{\footnotesize\ttfamily \label{freertos_8c_a6a263905468b0c37de4ee5e50ede4e74} 
+os\+Thread\+Id\+\_\+t default\+Task\+Handle}
+
+\Hypertarget{freertos_8c_aacd61ac1bbac156259774e474f6c501f}\index{freertos.c@{freertos.c}!greenDelay@{greenDelay}}
+\index{greenDelay@{greenDelay}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{greenDelay}{greenDelay}}
+{\footnotesize\ttfamily \label{freertos_8c_aacd61ac1bbac156259774e474f6c501f} 
+uint32\+\_\+t green\+Delay = 3000}
+
+\Hypertarget{freertos_8c_a07ccd3c0f617bddd39d093910d3221ae}\index{freertos.c@{freertos.c}!is\_car\_ew\_waiting@{is\_car\_ew\_waiting}}
+\index{is\_car\_ew\_waiting@{is\_car\_ew\_waiting}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{is\_car\_ew\_waiting}{is\_car\_ew\_waiting}}
+{\footnotesize\ttfamily \label{freertos_8c_a07ccd3c0f617bddd39d093910d3221ae} 
+uint8\+\_\+t is\+\_\+car\+\_\+ew\+\_\+waiting = 0}
+
+\Hypertarget{freertos_8c_ab7237d8693493b99cbd54eceaa5be728}\index{freertos.c@{freertos.c}!is\_car\_ns\_waiting@{is\_car\_ns\_waiting}}
+\index{is\_car\_ns\_waiting@{is\_car\_ns\_waiting}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{is\_car\_ns\_waiting}{is\_car\_ns\_waiting}}
+{\footnotesize\ttfamily \label{freertos_8c_ab7237d8693493b99cbd54eceaa5be728} 
+uint8\+\_\+t is\+\_\+car\+\_\+ns\+\_\+waiting = 0}
+
+\Hypertarget{freertos_8c_a4231e2f0f0de8aaea95db8b1ee010869}\index{freertos.c@{freertos.c}!is\_ped\_ns\_waiting@{is\_ped\_ns\_waiting}}
+\index{is\_ped\_ns\_waiting@{is\_ped\_ns\_waiting}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{is\_ped\_ns\_waiting}{is\_ped\_ns\_waiting}}
+{\footnotesize\ttfamily \label{freertos_8c_a4231e2f0f0de8aaea95db8b1ee010869} 
+uint8\+\_\+t is\+\_\+ped\+\_\+ns\+\_\+waiting = 0}
+
+\Hypertarget{freertos_8c_acf2c8910e5ef71730f1b5eaaed6c496a}\index{freertos.c@{freertos.c}!msg\_failed@{msg\_failed}}
+\index{msg\_failed@{msg\_failed}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{msg\_failed}{msg\_failed}}
+{\footnotesize\ttfamily \label{freertos_8c_acf2c8910e5ef71730f1b5eaaed6c496a} 
+uint8\+\_\+t msg\+\_\+failed = 0x00}
+
+Error code\+: Returns if Message-\/\+ID is invalid or value is outside limits \Hypertarget{freertos_8c_a6586bd3d35d808967fb8459f25922367}\index{freertos.c@{freertos.c}!msg\_success@{msg\_success}}
+\index{msg\_success@{msg\_success}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{msg\_success}{msg\_success}}
+{\footnotesize\ttfamily \label{freertos_8c_a6586bd3d35d808967fb8459f25922367} 
+uint8\+\_\+t msg\+\_\+success = 0x01}
+
+Success code\+: Returns if received command is valid \Hypertarget{freertos_8c_ae8af103831a49353d21ee13fa606a13f}\index{freertos.c@{freertos.c}!orangeDelay@{orangeDelay}}
+\index{orangeDelay@{orangeDelay}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{orangeDelay}{orangeDelay}}
+{\footnotesize\ttfamily \label{freertos_8c_ae8af103831a49353d21ee13fa606a13f} 
+uint32\+\_\+t orange\+Delay = 3000}
+
+\Hypertarget{freertos_8c_afdc417d2e606c678717ae6c984959f3c}\index{freertos.c@{freertos.c}!ped\_green@{ped\_green}}
+\index{ped\_green@{ped\_green}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{ped\_green}{ped\_green}}
+{\footnotesize\ttfamily \label{freertos_8c_afdc417d2e606c678717ae6c984959f3c} 
+uint8\+\_\+t ped\+\_\+green = 0}
+
+\Hypertarget{freertos_8c_a6b59f75369700988fa3f2dfa5c225354}\index{freertos.c@{freertos.c}!pedestrianDelay@{pedestrianDelay}}
+\index{pedestrianDelay@{pedestrianDelay}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{pedestrianDelay}{pedestrianDelay}}
+{\footnotesize\ttfamily \label{freertos_8c_a6b59f75369700988fa3f2dfa5c225354} 
+uint32\+\_\+t pedestrian\+Delay = 5000}
+
+\Hypertarget{freertos_8c_a62170ad8bb4cb861ba9b2ff06d8a97c3}\index{freertos.c@{freertos.c}!redDelay@{redDelay}}
+\index{redDelay@{redDelay}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{redDelay}{redDelay}}
+{\footnotesize\ttfamily \label{freertos_8c_a62170ad8bb4cb861ba9b2ff06d8a97c3} 
+uint32\+\_\+t red\+Delay = 500}
+
+\Hypertarget{freertos_8c_aa42e6e3c5fb6a18cd287a0167a150602}\index{freertos.c@{freertos.c}!redDelayMax@{redDelayMax}}
+\index{redDelayMax@{redDelayMax}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{redDelayMax}{redDelayMax}}
+{\footnotesize\ttfamily \label{freertos_8c_aa42e6e3c5fb6a18cd287a0167a150602} 
+uint32\+\_\+t red\+Delay\+Max = 6000}
+
+\Hypertarget{freertos_8c_a832bfefba0c3f651c05cfc21aad39dd0}\index{freertos.c@{freertos.c}!rx\_data@{rx\_data}}
+\index{rx\_data@{rx\_data}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{rx\_data}{rx\_data}}
+{\footnotesize\ttfamily \label{freertos_8c_a832bfefba0c3f651c05cfc21aad39dd0} 
+uint8\+\_\+t rx\+\_\+data\mbox{[}4\mbox{]}}
+
+Buffer for incomming UART data. \mbox{[}0\mbox{]} = ID , \mbox{[}1\mbox{]} = 0x00 , \mbox{[}2\mbox{]},\mbox{[}3\mbox{]} = value \Hypertarget{freertos_8c_a6948d89c4415ff8091b3136abb4cb6a7}\index{freertos.c@{freertos.c}!SharedData\_attributes@{SharedData\_attributes}}
+\index{SharedData\_attributes@{SharedData\_attributes}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{SharedData\_attributes}{SharedData\_attributes}}
+{\footnotesize\ttfamily \label{freertos_8c_a6948d89c4415ff8091b3136abb4cb6a7} 
+const os\+Mutex\+Attr\+\_\+t Shared\+Data\+\_\+attributes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ .name\ =\ \textcolor{stringliteral}{"{}SharedData"{}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{freertos_8c_a86a239b9f60605dc32847d6e4afc389d}\index{freertos.c@{freertos.c}!SharedDataHandle@{SharedDataHandle}}
+\index{SharedDataHandle@{SharedDataHandle}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{SharedDataHandle}{SharedDataHandle}}
+{\footnotesize\ttfamily \label{freertos_8c_a86a239b9f60605dc32847d6e4afc389d} 
+os\+Mutex\+Id\+\_\+t Shared\+Data\+Handle}
+
+\Hypertarget{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27}\index{freertos.c@{freertos.c}!toggleFreq@{toggleFreq}}
+\index{toggleFreq@{toggleFreq}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{toggleFreq}{toggleFreq}}
+{\footnotesize\ttfamily \label{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27} 
+uint32\+\_\+t toggle\+Freq = 200}
+
+\Hypertarget{freertos_8c_a8bd115a2bb87df34db88d7249d7eeeb1}\index{freertos.c@{freertos.c}!TrafficStates\_attributes@{TrafficStates\_attributes}}
+\index{TrafficStates\_attributes@{TrafficStates\_attributes}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{TrafficStates\_attributes}{TrafficStates\_attributes}}
+{\footnotesize\ttfamily \label{freertos_8c_a8bd115a2bb87df34db88d7249d7eeeb1} 
+const os\+Thread\+Attr\+\_\+t Traffic\+States\+\_\+attributes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ .name\ =\ \textcolor{stringliteral}{"{}TrafficStates"{}},}
+\DoxyCodeLine{\ \ .stack\_size\ =\ 128\ *\ 4,}
+\DoxyCodeLine{\ \ .priority\ =\ (osPriority\_t)\ osPriorityNormal,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{freertos_8c_a97254cae64deebc5b0ba60f8f9a9c05f}\index{freertos.c@{freertos.c}!TrafficStatesHandle@{TrafficStatesHandle}}
+\index{TrafficStatesHandle@{TrafficStatesHandle}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{TrafficStatesHandle}{TrafficStatesHandle}}
+{\footnotesize\ttfamily \label{freertos_8c_a97254cae64deebc5b0ba60f8f9a9c05f} 
+os\+Thread\+Id\+\_\+t Traffic\+States\+Handle}
+
+\Hypertarget{freertos_8c_a9b2653317ef098565aa2c15e5669ec4b}\index{freertos.c@{freertos.c}!UartReady@{UartReady}}
+\index{UartReady@{UartReady}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{UartReady}{UartReady}}
+{\footnotesize\ttfamily \label{freertos_8c_a9b2653317ef098565aa2c15e5669ec4b} 
+ITStatus Uart\+Ready = RESET}
+
+is set to SET by UART callback when a package is recieved. \Hypertarget{freertos_8c_aa1202f429277eba714201003a0e3239a}\index{freertos.c@{freertos.c}!UserInput\_attributes@{UserInput\_attributes}}
+\index{UserInput\_attributes@{UserInput\_attributes}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{UserInput\_attributes}{UserInput\_attributes}}
+{\footnotesize\ttfamily \label{freertos_8c_aa1202f429277eba714201003a0e3239a} 
+const os\+Thread\+Attr\+\_\+t User\+Input\+\_\+attributes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ .name\ =\ \textcolor{stringliteral}{"{}UserInput"{}},}
+\DoxyCodeLine{\ \ .stack\_size\ =\ 128\ *\ 4,}
+\DoxyCodeLine{\ \ .priority\ =\ (osPriority\_t)\ osPriorityLow,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{freertos_8c_a2e41409556accc6d8a0395f6ea0ff89e}\index{freertos.c@{freertos.c}!UserInputHandle@{UserInputHandle}}
+\index{UserInputHandle@{UserInputHandle}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{UserInputHandle}{UserInputHandle}}
+{\footnotesize\ttfamily \label{freertos_8c_a2e41409556accc6d8a0395f6ea0ff89e} 
+os\+Thread\+Id\+\_\+t User\+Input\+Handle}
+
+\Hypertarget{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}\index{freertos.c@{freertos.c}!walkingDelay@{walkingDelay}}
+\index{walkingDelay@{walkingDelay}!freertos.c@{freertos.c}}
+\doxysubsubsection{\texorpdfstring{walkingDelay}{walkingDelay}}
+{\footnotesize\ttfamily \label{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021} 
+uint32\+\_\+t walking\+Delay = 4000}
+

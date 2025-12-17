@@ -1,0 +1,85 @@
+\doxysection{Core/\+Inc/io\+\_\+handler.h File Reference}
+\hypertarget{io__handler_8h}{}\label{io__handler_8h}\index{Core/Inc/io\_handler.h@{Core/Inc/io\_handler.h}}
+{\ttfamily \#include "{}stm32l4xx\+\_\+hal.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}spi.\+h"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}test.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900}{Inputs}} \{ \newline
+\mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a78bb15708c7ee8269dbed41902bb2974}{NORTH\+\_\+\+PEDESTRIAN}}
+, \mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a180fcd9e08050e8a0c56dcee55f9fd48}{CAR\+\_\+\+NORTH}}
+, \mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900ac6562f9a06eb64928435a407996c15ed}{CAR\+\_\+\+SOUTH}}
+, \mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a6cbb4cafec51ae9f18d8f95692bef0cd}{CAR\+\_\+\+WEST}}
+, \newline
+\mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a64f0e7d832c9ad8e162bf3f2962a337b}{CAR\+\_\+\+EAST}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{io__handler_8h_a23a41f50f12fc8fc2cbdbaf33b85aa57}{write\+\_\+to\+\_\+register}} (uint8\+\_\+t r1, uint8\+\_\+t r2, uint8\+\_\+t r3)
+\item 
+bool \mbox{\hyperlink{io__handler_8h_acd0618471cbce265113e30d6449495dd}{read\+\_\+input}} (\mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900}{Inputs}} button)
+\item 
+void \mbox{\hyperlink{io__handler_8h_a7090eb01ca7a8fdab0df9eb9e3e7ce7f}{update\+\_\+time}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{freertos_8c_a832bfefba0c3f651c05cfc21aad39dd0}{rx\+\_\+data}})
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{io__handler_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900}\index{io\_handler.h@{io\_handler.h}!Inputs@{Inputs}}
+\index{Inputs@{Inputs}!io\_handler.h@{io\_handler.h}}
+\doxysubsubsection{\texorpdfstring{Inputs}{Inputs}}
+{\footnotesize\ttfamily \label{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900} 
+enum \mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900}{Inputs}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NORTH\_PEDESTRIAN@{NORTH\_PEDESTRIAN}!io\_handler.h@{io\_handler.h}}\index{io\_handler.h@{io\_handler.h}!NORTH\_PEDESTRIAN@{NORTH\_PEDESTRIAN}}}\Hypertarget{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a78bb15708c7ee8269dbed41902bb2974}\label{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a78bb15708c7ee8269dbed41902bb2974} 
+NORTH\+\_\+\+PEDESTRIAN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAR\_NORTH@{CAR\_NORTH}!io\_handler.h@{io\_handler.h}}\index{io\_handler.h@{io\_handler.h}!CAR\_NORTH@{CAR\_NORTH}}}\Hypertarget{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a180fcd9e08050e8a0c56dcee55f9fd48}\label{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a180fcd9e08050e8a0c56dcee55f9fd48} 
+CAR\+\_\+\+NORTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAR\_SOUTH@{CAR\_SOUTH}!io\_handler.h@{io\_handler.h}}\index{io\_handler.h@{io\_handler.h}!CAR\_SOUTH@{CAR\_SOUTH}}}\Hypertarget{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900ac6562f9a06eb64928435a407996c15ed}\label{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900ac6562f9a06eb64928435a407996c15ed} 
+CAR\+\_\+\+SOUTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAR\_WEST@{CAR\_WEST}!io\_handler.h@{io\_handler.h}}\index{io\_handler.h@{io\_handler.h}!CAR\_WEST@{CAR\_WEST}}}\Hypertarget{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a6cbb4cafec51ae9f18d8f95692bef0cd}\label{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a6cbb4cafec51ae9f18d8f95692bef0cd} 
+CAR\+\_\+\+WEST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAR\_EAST@{CAR\_EAST}!io\_handler.h@{io\_handler.h}}\index{io\_handler.h@{io\_handler.h}!CAR\_EAST@{CAR\_EAST}}}\Hypertarget{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a64f0e7d832c9ad8e162bf3f2962a337b}\label{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900a64f0e7d832c9ad8e162bf3f2962a337b} 
+CAR\+\_\+\+EAST&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{io__handler_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{io__handler_8h_acd0618471cbce265113e30d6449495dd}\index{io\_handler.h@{io\_handler.h}!read\_input@{read\_input}}
+\index{read\_input@{read\_input}!io\_handler.h@{io\_handler.h}}
+\doxysubsubsection{\texorpdfstring{read\_input()}{read\_input()}}
+{\footnotesize\ttfamily \label{io__handler_8h_acd0618471cbce265113e30d6449495dd} 
+bool read\+\_\+input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{io__handler_8h_a18e1ff9f78a426cd8c15a98f20d78900}{Inputs}}}]{button}{}\end{DoxyParamCaption})}
+
+\Hypertarget{io__handler_8h_a7090eb01ca7a8fdab0df9eb9e3e7ce7f}\index{io\_handler.h@{io\_handler.h}!update\_time@{update\_time}}
+\index{update\_time@{update\_time}!io\_handler.h@{io\_handler.h}}
+\doxysubsubsection{\texorpdfstring{update\_time()}{update\_time()}}
+{\footnotesize\ttfamily \label{io__handler_8h_a7090eb01ca7a8fdab0df9eb9e3e7ce7f} 
+void update\+\_\+time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{rx\+\_\+data}{}\end{DoxyParamCaption})}
+
+\Hypertarget{io__handler_8h_a23a41f50f12fc8fc2cbdbaf33b85aa57}\index{io\_handler.h@{io\_handler.h}!write\_to\_register@{write\_to\_register}}
+\index{write\_to\_register@{write\_to\_register}!io\_handler.h@{io\_handler.h}}
+\doxysubsubsection{\texorpdfstring{write\_to\_register()}{write\_to\_register()}}
+{\footnotesize\ttfamily \label{io__handler_8h_a23a41f50f12fc8fc2cbdbaf33b85aa57} 
+void write\+\_\+to\+\_\+register (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{r1}{, }\item[{uint8\+\_\+t}]{r2}{, }\item[{uint8\+\_\+t}]{r3}{}\end{DoxyParamCaption})}
+

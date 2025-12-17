@@ -14,11 +14,12 @@
 #include "spi.h"
 #include <stdbool.h>
 #include "test.h"
+#include "usart.h"
+
 
 /*inputs*/
 typedef enum{
 	NORTH_PEDESTRIAN,
-	WEST_PEDESTRIAN,
 	CAR_NORTH,
 	CAR_SOUTH,
 	CAR_WEST,
@@ -29,7 +30,7 @@ typedef enum{
 
 void write_to_register(uint8_t r1,uint8_t r2, uint8_t r3);
 bool read_input(Inputs button);
-
+void update_time(uint8_t *rx_data);
 
 
 
