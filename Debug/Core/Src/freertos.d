@@ -42,8 +42,7 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  ../Core/Inc/trafficstates.h ../Core/Inc/io_handler.h ../Core/Inc/main.h \
  ../Core/Inc/spi.h ../Core/Inc/test.h ../Core/Inc/trafficstates.h \
- ../Core/Inc/trafficsystem.h ../Core/Inc/usart.h ../Core/Inc/io_handler.h \
- ../Core/Inc/usart.h
+ ../Core/Inc/usart.h ../Core/Inc/io_handler.h ../Core/Inc/usart.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -92,7 +91,6 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Core/Inc/spi.h:
 ../Core/Inc/test.h:
 ../Core/Inc/trafficstates.h:
-../Core/Inc/trafficsystem.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/io_handler.h:
 ../Core/Inc/usart.h:

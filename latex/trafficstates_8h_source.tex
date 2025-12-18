@@ -14,64 +14,58 @@
 \DoxyCodeLine{00010\ }
 \DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{io__handler_8h}{io\_handler.h}}"{}}}
 \DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \textcolor{comment}{/*Macros\ for\ bit\ combinations\ */}}
 \DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ EAST\_GREEN\ 0b00001100}}
 \DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ EAST\_YELLOW\ 0b00001010}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ EAST\_RED\ 0b00001001}}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ WEST\_GREEN\ 0b00001100}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ WEST\_YELLOW\ 0b00001010}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ WEST\_RED\ 0b00001001}}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ NORTH\_GREEN\ 0b00100001}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ NORTH\_YELLOW\ 0b00010001}}
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ NORTH\_RED\ 0b000001001}}
-\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ EAST\_RED\ 0b00001001}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ WEST\_GREEN\ 0b00001100}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ WEST\_YELLOW\ 0b00001010}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ WEST\_RED\ 0b00001001}\textcolor{preprocessor}{}}
 \DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ SOUTH\_GREEN\ 0b00001100}}
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ SOUTH\_YELLOW\ 0b00001010}}
-\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SOUTH\_RED\ 0b00001001}}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{comment}{/*Help\ macros\ for\ readability*/}}
-\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ DETECTED\ 0}}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ NOT\_DETECTED\ 1}}
-\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ YES\ 1}}
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ NO\ 0}}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \textcolor{comment}{/*global\ variables\ used\ */}}
-\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_a6b59f75369700988fa3f2dfa5c225354}{pedestrianDelay}};}
-\DoxyCodeLine{00042\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{walkingDelay}};}
-\DoxyCodeLine{00043\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}};}
-\DoxyCodeLine{00044\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27}{toggleFreq}};}
-\DoxyCodeLine{00045\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_aacd61ac1bbac156259774e474f6c501f}{greenDelay}};}
-\DoxyCodeLine{00046\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_a62170ad8bb4cb861ba9b2ff06d8a97c3}{redDelay}};}
-\DoxyCodeLine{00047\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_aa42e6e3c5fb6a18cd287a0167a150602}{redDelayMax}};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{freertos_8c_afdc417d2e606c678717ae6c984959f3c}{ped\_green}};}
-\DoxyCodeLine{00050\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{freertos_8c_a6586bd3d35d808967fb8459f25922367}{msg\_success}};}
-\DoxyCodeLine{00051\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{freertos_8c_acf2c8910e5ef71730f1b5eaaed6c496a}{msg\_failed}};}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \textcolor{comment}{/*Traffic\ lights*/}}
-\DoxyCodeLine{00054\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
-\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a4bf8bd9452bacec038cced633b312c9c}{NS\_GREEN}},}
-\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2aa4aed54f0af0e6f2d9b716c058a24903}{NS\_YELLOW}},}
-\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a0eca3f7bd820148dd02eaabc5dd14531}{NS\_RED}},}
-\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2acabb5f5ec1c9fbe1899bb72db29b9151}{EW\_GREEN}},}
-\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2ae71573d55e5715bbbb0c51f88a3fcfa8}{EW\_YELLOW}},}
-\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a5f748e7af4033a72d6ad2777e087de52}{EW\_RED}}}
-\DoxyCodeLine{00061\ \}\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}};}
-\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ NORTH\_GREEN\ 0b00100001}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ NORTH\_YELLOW\ 0b00010001}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ NORTH\_RED\ 0b000001001}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ SOUTH\_GREEN\ 0b00001100}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ SOUTH\_YELLOW\ 0b00001010}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ SOUTH\_RED\ 0b00001001}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ DETECTED\ 0}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ NOT\_DETECTED\ 1}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ YES\ 1}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ NO\ 0}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/*global\ variables\ used\ */}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_a6b59f75369700988fa3f2dfa5c225354}{pedestrianDelay}};}
+\DoxyCodeLine{00053\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_a30db9cbd5592bcc1e9c0132e03d22021}{walkingDelay}};}
+\DoxyCodeLine{00054\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_ae8af103831a49353d21ee13fa606a13f}{orangeDelay}};}
+\DoxyCodeLine{00055\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_a4fdd2968a38cf6b3344d0c9ce29f3b27}{toggleFreq}};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_aacd61ac1bbac156259774e474f6c501f}{greenDelay}};}
+\DoxyCodeLine{00057\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_a62170ad8bb4cb861ba9b2ff06d8a97c3}{redDelay}};}
+\DoxyCodeLine{00058\ \textcolor{keyword}{extern}\ uint32\_t\ \mbox{\hyperlink{freertos_8c_aa42e6e3c5fb6a18cd287a0167a150602}{redDelayMax}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{freertos_8c_afdc417d2e606c678717ae6c984959f3c}{ped\_green}};}
+\DoxyCodeLine{00061\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{freertos_8c_a6586bd3d35d808967fb8459f25922367}{msg\_success}};}
+\DoxyCodeLine{00062\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{freertos_8c_acf2c8910e5ef71730f1b5eaaed6c496a}{msg\_failed}};}
 \DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{comment}{/*\ Functions\ in\ trafficstate.c*/}}
-\DoxyCodeLine{00065\ uint8\_t\ \mbox{\hyperlink{trafficstates_8h_aedb2feb8591c670a3e39eafd0d7441e6}{greenlights}}(uint32\_t\ *greenstart,\ uint32\_t\ greenstop);}
-\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{trafficstates_8h_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44}{update\_lights\_hardware}}(\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}}\ states,\ uint8\_t\ blue\_status,\ uint8\_t\ green\_status);}
-\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{trafficstates_8h_acc9158c99f70e05fb113c44488058527}{update\_traffic\_states}}(uint32\_t\ *start\_time,\ uint32\_t\ current\_time,\ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}}\ *states,\ uint8\_t\ *n\_ped\_wait,\ uint8\_t\ car\_ns,\ uint8\_t\ car\_ew);}
-\DoxyCodeLine{00068\ uint8\_t\ \mbox{\hyperlink{trafficstates_8h_a956485862221fd8cfc7af9fc46aa9cb1}{toggle\_bluelights}}(uint32\_t\ *blinkstart,\ uint32\_t\ blinkstop);}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ INC\_TRAFFICSTATES\_H\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a4bf8bd9452bacec038cced633b312c9c}{NS\_GREEN}},\ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2aa4aed54f0af0e6f2d9b716c058a24903}{NS\_YELLOW}},\ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a0eca3f7bd820148dd02eaabc5dd14531}{NS\_RED}},\ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2acabb5f5ec1c9fbe1899bb72db29b9151}{EW\_GREEN}},\ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2ae71573d55e5715bbbb0c51f88a3fcfa8}{EW\_YELLOW}},\ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a5f748e7af4033a72d6ad2777e087de52}{EW\_RED}}\ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \}\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{/*\ Functions\ in\ trafficstate.c*/}}
+\DoxyCodeLine{00078\ uint8\_t\ \mbox{\hyperlink{trafficstates_8h_aedb2feb8591c670a3e39eafd0d7441e6}{greenlights}}(uint32\_t\ *greenstart,\ uint32\_t\ greenstop);}
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{trafficstates_8h_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44}{update\_lights\_hardware}}(\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}}\ states,\ uint8\_t\ blue\_status,\ uint8\_t\ green\_status);}
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{trafficstates_8h_acc9158c99f70e05fb113c44488058527}{update\_traffic\_states}}(uint32\_t\ *start\_time,\ uint32\_t\ current\_time,\ \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}}\ *states,\ uint8\_t\ *n\_ped\_wait,\ uint8\_t\ car\_ns,\ uint8\_t\ car\_ew);}
+\DoxyCodeLine{00081\ uint8\_t\ \mbox{\hyperlink{trafficstates_8h_a956485862221fd8cfc7af9fc46aa9cb1}{toggle\_bluelights}}(uint32\_t\ *blinkstart,\ uint32\_t\ blinkstop);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ INC\_TRAFFICSTATES\_H\_\ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

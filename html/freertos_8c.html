@@ -91,6 +91,9 @@ $(function(){initNavTree('freertos_8c.html','',''); });
   <div class="headertitle"><div class="title">freertos.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Logic and task management for the Traffic Light System.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;FreeRTOS.h&quot;</code><br />
 <code>#include &quot;task.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br />
@@ -102,17 +105,26 @@ $(function(){initNavTree('freertos_8c.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a99d0fdb0434092bcb24d9c9af917e4e9" id="r_a99d0fdb0434092bcb24d9c9af917e4e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99d0fdb0434092bcb24d9c9af917e4e9">StartDefaultTask</a> (void *argument)</td></tr>
-<tr class="memdesc:a99d0fdb0434092bcb24d9c9af917e4e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function implementing the defaultTask thread.  <br /></td></tr>
 <tr class="memitem:a1604d1a76138812de410c75c55c3226e" id="r_a1604d1a76138812de410c75c55c3226e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1604d1a76138812de410c75c55c3226e">TrafficState</a> (void *argument)</td></tr>
-<tr class="memdesc:a1604d1a76138812de410c75c55c3226e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function implementing the TrafficStates thread.  <br /></td></tr>
+<tr class="memdesc:a1604d1a76138812de410c75c55c3226e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main logic task: Hanldles the traffic lights transitions and updates hardware. It performs the following steps:  <br /></td></tr>
 <tr class="memitem:a8784f1f2c238f1c5816419cb1012be02" id="r_a8784f1f2c238f1c5816419cb1012be02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8784f1f2c238f1c5816419cb1012be02">Userinputs</a> (void *argument)</td></tr>
-<tr class="memdesc:a8784f1f2c238f1c5816419cb1012be02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function implementing the UserInput thread.  <br /></td></tr>
+<tr class="memdesc:a8784f1f2c238f1c5816419cb1012be02"><td class="mdescLeft">&#160;</td><td class="mdescRight">User input task: Register if someone has pressed the pedestrian button or vehicles are present. It performs the following:  <br /></td></tr>
 <tr class="memitem:abade755e13d07c10889ae83143656158" id="r_abade755e13d07c10889ae83143656158"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abade755e13d07c10889ae83143656158">MX_FREERTOS_Init</a> (void)</td></tr>
-<tr class="memdesc:abade755e13d07c10889ae83143656158"><td class="mdescLeft">&#160;</td><td class="mdescRight">FreeRTOS initialization.  <br /></td></tr>
 <tr class="memitem:a37adccfb81027787e44e03a11be16fed" id="r_a37adccfb81027787e44e03a11be16fed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37adccfb81027787e44e03a11be16fed">HAL_UART_RxCpltCallback</a> (UART_HandleTypeDef *<a class="el" href="stm32l4xx__it_8c.html#aa9479c261d65eecedd3d9582f7f0f89c">huart2</a>)</td></tr>
+<tr class="memdesc:a37adccfb81027787e44e03a11be16fed"><td class="mdescLeft">&#160;</td><td class="mdescRight">UART Callback: Runs automatically when a full message is received.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr id="var-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">UART Communication</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Variables and data buffer for serial communication. </p>
+</div></td></tr>
+<tr class="memitem:acf2c8910e5ef71730f1b5eaaed6c496a" id="r_acf2c8910e5ef71730f1b5eaaed6c496a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf2c8910e5ef71730f1b5eaaed6c496a">msg_failed</a> = 0x00</td></tr>
+<tr class="memitem:a6586bd3d35d808967fb8459f25922367" id="r_a6586bd3d35d808967fb8459f25922367"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6586bd3d35d808967fb8459f25922367">msg_success</a> = 0x01</td></tr>
+<tr class="memitem:a832bfefba0c3f651c05cfc21aad39dd0" id="r_a832bfefba0c3f651c05cfc21aad39dd0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a832bfefba0c3f651c05cfc21aad39dd0">rx_data</a> [4]</td></tr>
+<tr class="memitem:a9b2653317ef098565aa2c15e5669ec4b" id="r_a9b2653317ef098565aa2c15e5669ec4b"><td class="memItemLeft" align="right" valign="top">ITStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b2653317ef098565aa2c15e5669ec4b">UartReady</a> = RESET</td></tr>
+<tr id="var-members-1" class="groupHeader"><td colspan="2"><div class="groupHeader">Timing parameters</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Shared timing variables updated via UART and read by TrafficState. </p>
+</div></td></tr>
 <tr class="memitem:a4fdd2968a38cf6b3344d0c9ce29f3b27" id="r_a4fdd2968a38cf6b3344d0c9ce29f3b27"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fdd2968a38cf6b3344d0c9ce29f3b27">toggleFreq</a> = 200</td></tr>
 <tr class="memitem:a6b59f75369700988fa3f2dfa5c225354" id="r_a6b59f75369700988fa3f2dfa5c225354"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b59f75369700988fa3f2dfa5c225354">pedestrianDelay</a> = 5000</td></tr>
 <tr class="memitem:a30db9cbd5592bcc1e9c0132e03d22021" id="r_a30db9cbd5592bcc1e9c0132e03d22021"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30db9cbd5592bcc1e9c0132e03d22021">walkingDelay</a> = 4000</td></tr>
@@ -120,10 +132,16 @@ Variables</h2></td></tr>
 <tr class="memitem:aacd61ac1bbac156259774e474f6c501f" id="r_aacd61ac1bbac156259774e474f6c501f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacd61ac1bbac156259774e474f6c501f">greenDelay</a> = 3000</td></tr>
 <tr class="memitem:a62170ad8bb4cb861ba9b2ff06d8a97c3" id="r_a62170ad8bb4cb861ba9b2ff06d8a97c3"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62170ad8bb4cb861ba9b2ff06d8a97c3">redDelay</a> = 500</td></tr>
 <tr class="memitem:aa42e6e3c5fb6a18cd287a0167a150602" id="r_aa42e6e3c5fb6a18cd287a0167a150602"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa42e6e3c5fb6a18cd287a0167a150602">redDelayMax</a> = 6000</td></tr>
+<tr id="var-members-2" class="groupHeader"><td colspan="2"><div class="groupHeader">Traffic flags</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Status flags for buttons and switches on the traffic shield </p>
+</div></td></tr>
 <tr class="memitem:ab7237d8693493b99cbd54eceaa5be728" id="r_ab7237d8693493b99cbd54eceaa5be728"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7237d8693493b99cbd54eceaa5be728">is_car_ns_waiting</a> = 0</td></tr>
 <tr class="memitem:a07ccd3c0f617bddd39d093910d3221ae" id="r_a07ccd3c0f617bddd39d093910d3221ae"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07ccd3c0f617bddd39d093910d3221ae">is_car_ew_waiting</a> = 0</td></tr>
 <tr class="memitem:a4231e2f0f0de8aaea95db8b1ee010869" id="r_a4231e2f0f0de8aaea95db8b1ee010869"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4231e2f0f0de8aaea95db8b1ee010869">is_ped_ns_waiting</a> = 0</td></tr>
 <tr class="memitem:afdc417d2e606c678717ae6c984959f3c" id="r_afdc417d2e606c678717ae6c984959f3c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdc417d2e606c678717ae6c984959f3c">ped_green</a> = 0</td></tr>
+<tr id="var-members-3" class="groupHeader"><td colspan="2"><div class="groupHeader">FREERTOS Resources</div></td></tr>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Declared threads and Mutex </p>
+</div></td></tr>
 <tr class="memitem:a6a263905468b0c37de4ee5e50ede4e74" id="r_a6a263905468b0c37de4ee5e50ede4e74"><td class="memItemLeft" align="right" valign="top">osThreadId_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a263905468b0c37de4ee5e50ede4e74">defaultTaskHandle</a></td></tr>
 <tr class="memitem:a25fbb54afdba71c24ba51ed50166ac8d" id="r_a25fbb54afdba71c24ba51ed50166ac8d"><td class="memItemLeft" align="right" valign="top">const osThreadAttr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25fbb54afdba71c24ba51ed50166ac8d">defaultTask_attributes</a></td></tr>
 <tr class="memitem:a97254cae64deebc5b0ba60f8f9a9c05f" id="r_a97254cae64deebc5b0ba60f8f9a9c05f"><td class="memItemLeft" align="right" valign="top">osThreadId_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97254cae64deebc5b0ba60f8f9a9c05f">TrafficStatesHandle</a></td></tr>
@@ -132,18 +150,11 @@ Variables</h2></td></tr>
 <tr class="memitem:aa1202f429277eba714201003a0e3239a" id="r_aa1202f429277eba714201003a0e3239a"><td class="memItemLeft" align="right" valign="top">const osThreadAttr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1202f429277eba714201003a0e3239a">UserInput_attributes</a></td></tr>
 <tr class="memitem:a86a239b9f60605dc32847d6e4afc389d" id="r_a86a239b9f60605dc32847d6e4afc389d"><td class="memItemLeft" align="right" valign="top">osMutexId_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86a239b9f60605dc32847d6e4afc389d">SharedDataHandle</a></td></tr>
 <tr class="memitem:a6948d89c4415ff8091b3136abb4cb6a7" id="r_a6948d89c4415ff8091b3136abb4cb6a7"><td class="memItemLeft" align="right" valign="top">const osMutexAttr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6948d89c4415ff8091b3136abb4cb6a7">SharedData_attributes</a></td></tr>
-<tr id="var-members-0" class="groupHeader"><td colspan="2"><div class="groupHeader">UART communication</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><p>File Name : <a class="el" href="freertos_8c.html">freertos.c</a> Description : Code for freertos applications</p>
-<dl class="section attention"><dt>Attention</dt><dd></dd></dl>
-<p>Copyright (c) 2025 STMicroelectronics. All rights reserved.</p>
-<p>This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-IS. </p>
-</div></td></tr>
-<tr class="memitem:acf2c8910e5ef71730f1b5eaaed6c496a" id="r_acf2c8910e5ef71730f1b5eaaed6c496a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf2c8910e5ef71730f1b5eaaed6c496a">msg_failed</a> = 0x00</td></tr>
-<tr class="memitem:a6586bd3d35d808967fb8459f25922367" id="r_a6586bd3d35d808967fb8459f25922367"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6586bd3d35d808967fb8459f25922367">msg_success</a> = 0x01</td></tr>
-<tr class="memitem:a832bfefba0c3f651c05cfc21aad39dd0" id="r_a832bfefba0c3f651c05cfc21aad39dd0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a832bfefba0c3f651c05cfc21aad39dd0">rx_data</a> [4]</td></tr>
-<tr class="memitem:a9b2653317ef098565aa2c15e5669ec4b" id="r_a9b2653317ef098565aa2c15e5669ec4b"><td class="memItemLeft" align="right" valign="top">ITStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b2653317ef098565aa2c15e5669ec4b">UartReady</a> = RESET</td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Logic and task management for the Traffic Light System. </p>
+<p>This file handles the FreeRTOS tasks, mutexes for shared data, and the UART communication protocol. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a37adccfb81027787e44e03a11be16fed" name="a37adccfb81027787e44e03a11be16fed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a37adccfb81027787e44e03a11be16fed">&#9670;&#160;</a></span>HAL_UART_RxCpltCallback()</h2>
 
@@ -158,6 +169,27 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>UART Callback: Runs automatically when a full message is received. </p>
+<ul>
+<li>This function handles the finished data transfer:</li>
+</ul>
+<ol type="1">
+<li>Sets the 'UartReady' flag to tell the main brain that new data is waiting.</li>
+<li>Starts a new listen mode so the system can receive the next 4 bytes.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">huart</td><td>Pointer to the UART hardware structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -176,20 +208,6 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>FreeRTOS initialization. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">None</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">None</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
 </div>
 </div>
 <a id="a99d0fdb0434092bcb24d9c9af917e4e9" name="a99d0fdb0434092bcb24d9c9af917e4e9"></a>
@@ -206,20 +224,6 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Function implementing the defaultTask thread. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">argument</td><td>Not used </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">None</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -238,8 +242,13 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function implementing the TrafficStates thread. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Main logic task: Hanldles the traffic lights transitions and updates hardware. It performs the following steps: </p>
+<ol type="1">
+<li>Updates timing parameters and check for incomming UART data.</li>
+<li>Using Mutex to safely read global variables from the userinput task</li>
+<li>Calls <a class="el" href="trafficstates_8c.html#acc9158c99f70e05fb113c44488058527" title="Main logic for changing between the trafficlights different states. The function takes action based o...">update_traffic_states()</a> to decide if the lights should change colour based on timers and inputs from buttons or switches.</li>
+<li>Controls the extra lights such as the blinking blue light for people waiting and the green light for walking.</li>
+<li>Turns the actual LEDs on or off to show the correct traffic light colors <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argument</td><td>Not used </td></tr>
   </table>
@@ -251,6 +260,8 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+</li>
+</ol>
 
 </div>
 </div>
@@ -269,8 +280,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function implementing the UserInput thread. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>User input task: Register if someone has pressed the pedestrian button or vehicles are present. It performs the following: </p>
+<ol type="1">
+<li>Check if a pedestrian has pressed a button.</li>
+<li>Check if a car is waiting in the North-South lane.</li>
+<li>Check if a car is waiting in the East-West lane.</li>
+<li>Uses a mutex to safely update the global variables <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argument</td><td>Not used </td></tr>
   </table>
@@ -282,6 +297,8 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+</li>
+</ol>
 
 </div>
 </div>
@@ -302,7 +319,8 @@ Variables</h2></td></tr>
 <div class="line">  .stack_size = 128 * 4,</div>
 <div class="line">  .priority = (osPriority_t) osPriorityNormal,</div>
 <div class="line">}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Handle for the main state machine task. </p>
+
 </div>
 </div>
 <a id="a6a263905468b0c37de4ee5e50ede4e74" name="a6a263905468b0c37de4ee5e50ede4e74"></a>
@@ -316,6 +334,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Handle for the main state machine task. </p>
 
 </div>
 </div>
@@ -330,6 +349,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Duration of green light when no traffic is detected </p>
 
 </div>
 </div>
@@ -344,6 +364,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Status flag: Vehicle detected East/West. </p>
 
 </div>
 </div>
@@ -358,6 +379,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Status flag: Vehicle detected North/South. </p>
 
 </div>
 </div>
@@ -372,6 +394,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Status flag: Pedestrian button pressed. </p>
 
 </div>
 </div>
@@ -401,7 +424,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Success code: Returns if received command is valid </p>
+<p>Success code: Returns if received UART data is valid </p>
 
 </div>
 </div>
@@ -416,6 +439,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Duration of orange light </p>
 
 </div>
 </div>
@@ -430,6 +454,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Logic flag: Active when pedestrian light is green. </p>
 
 </div>
 </div>
@@ -444,6 +469,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Maximum allowed time from pedestrian pressed until car lanes shows red (ms). </p>
 
 </div>
 </div>
@@ -458,6 +484,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Duration of red light </p>
 
 </div>
 </div>
@@ -472,6 +499,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Maximum allowed time a lane stays red when traffic is waiting </p>
 
 </div>
 </div>
@@ -504,7 +532,8 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">  .name = <span class="stringliteral">&quot;SharedData&quot;</span></div>
 <div class="line">}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Handle for the main state machine task. </p>
+
 </div>
 </div>
 <a id="a86a239b9f60605dc32847d6e4afc389d" name="a86a239b9f60605dc32847d6e4afc389d"></a>
@@ -518,6 +547,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Mutex to protect flags from race condition </p>
 
 </div>
 </div>
@@ -532,6 +562,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Frequency for flashing warning lights (ms). </p>
 
 </div>
 </div>
@@ -551,7 +582,8 @@ Variables</h2></td></tr>
 <div class="line">  .stack_size = 128 * 4,</div>
 <div class="line">  .priority = (osPriority_t) osPriorityNormal,</div>
 <div class="line">}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Handle for the main state machine task. </p>
+
 </div>
 </div>
 <a id="a97254cae64deebc5b0ba60f8f9a9c05f" name="a97254cae64deebc5b0ba60f8f9a9c05f"></a>
@@ -565,6 +597,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Handle for the main state machine task. </p>
 
 </div>
 </div>
@@ -599,7 +632,8 @@ Variables</h2></td></tr>
 <div class="line">  .stack_size = 128 * 4,</div>
 <div class="line">  .priority = (osPriority_t) osPriorityLow,</div>
 <div class="line">}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><p>Handle for the main state machine task. </p>
+
 </div>
 </div>
 <a id="a2e41409556accc6d8a0395f6ea0ff89e" name="a2e41409556accc6d8a0395f6ea0ff89e"></a>
@@ -613,6 +647,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Handle for the inputs from switches and buttons </p>
 
 </div>
 </div>
@@ -627,6 +662,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Duration of green light for crosswalk </p>
 
 </div>
 </div>

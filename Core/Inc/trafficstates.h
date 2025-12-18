@@ -10,32 +10,43 @@
 
 #include "io_handler.h"
 
-
-/*Macros for bit combinations */
+/** @name Traffic Light Bitmasks - East
+ * @{ */
 #define EAST_GREEN 0b00001100
 #define EAST_YELLOW 0b00001010
 #define EAST_RED 0b00001001
+/** @} */
 
+
+/** @name Traffic Light Bitmasks - West
+ * @{ */
 #define WEST_GREEN 0b00001100
 #define WEST_YELLOW 0b00001010
 #define WEST_RED 0b00001001
+/** @} */
 
+/** @name Traffic Light Bitmasks - North
+ * @{ */
 #define NORTH_GREEN 0b00100001
 #define NORTH_YELLOW 0b00010001
 #define NORTH_RED 0b000001001
+/** @} */
 
-
+/** @name Traffic Light Bitmasks - South
+ * @{ */
 #define SOUTH_GREEN 0b00001100
 #define SOUTH_YELLOW 0b00001010
 #define SOUTH_RED 0b00001001
+/** @} */
 
-
-/*Help macros for readability*/
+/** @name Help constants
+ * Readability macros for states and logic.
+ * @{ */
 #define DETECTED 0
 #define NOT_DETECTED 1
 #define YES 1
 #define NO 0
-
+/** @} */
 
 /*global variables used */
 extern uint32_t pedestrianDelay;
@@ -50,14 +61,16 @@ extern uint8_t ped_green;
 extern uint8_t msg_success;
 extern uint8_t msg_failed;
 
-/*Traffic lights*/
+/**
+ * @brief Traffic lights states
+ */
 typedef enum{
-	NS_GREEN,
-	NS_YELLOW,
-	NS_RED,
-	EW_GREEN,
-	EW_YELLOW,
-	EW_RED
+	NS_GREEN,  	/**<  Green light for North and South trafficlight.*/
+	NS_YELLOW,  /**< Yellow light for North and South trafficlight. */
+	NS_RED,   	/**< Red light for North and South trafficlight. */
+	EW_GREEN,	/**< Green light for East and West trafficlight. */
+	EW_YELLOW,	/**< Yellow light for East and West trafficlight. */
+	EW_RED		/**< Red light for East and West trafficlight. */
 }Trafficlights;
 
 

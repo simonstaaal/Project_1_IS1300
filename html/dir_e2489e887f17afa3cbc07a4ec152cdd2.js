@@ -9,6 +9,5 @@ var dir_e2489e887f17afa3cbc07a4ec152cdd2 =
     [ "stm32l4xx_it.h", "stm32l4xx__it_8h.html", "stm32l4xx__it_8h" ],
     [ "test.h", "test_8h.html", "test_8h" ],
     [ "trafficstates.h", "trafficstates_8h.html", "trafficstates_8h" ],
-    [ "trafficsystem.h", "trafficsystem_8h.html", "trafficsystem_8h" ],
     [ "usart.h", "usart_8h.html", "usart_8h" ]
 ];

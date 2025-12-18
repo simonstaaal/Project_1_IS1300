@@ -2,6 +2,7 @@
 \hypertarget{trafficstates_8h}{}\label{trafficstates_8h}\index{Core/Inc/trafficstates.h@{Core/Inc/trafficstates.h}}
 {\ttfamily \#include "{}io\+\_\+handler.\+h"{}}\newline
 \doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Traffic Light Bitmasks -\/ East}\par
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_af53629eafe38ee6defd326128db208fd}{EAST\+\_\+\+GREEN}}~0b00001100
@@ -9,24 +10,40 @@
 \#define \mbox{\hyperlink{trafficstates_8h_a2cb1ade5c70e3ce975d767e37236805c}{EAST\+\_\+\+YELLOW}}~0b00001010
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_aeca50f38517712917bffd8555072d6d8}{EAST\+\_\+\+RED}}~0b00001001
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Traffic Light Bitmasks -\/ West}\par
+\begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_a270c5569a8827f5aa4b9cced8998d7ed}{WEST\+\_\+\+GREEN}}~0b00001100
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_ac9cdfae70bed22634029c3919b45be26}{WEST\+\_\+\+YELLOW}}~0b00001010
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_a5e941e4e6026c51cfb54649ae02de6b6}{WEST\+\_\+\+RED}}~0b00001001
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Traffic Light Bitmasks -\/ North}\par
+\begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_a2dc9992a10634851cbf060b9a55712b5}{NORTH\+\_\+\+GREEN}}~0b00100001
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_a21fc0437aac819451600a8ba1eafdc6b}{NORTH\+\_\+\+YELLOW}}~0b00010001
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_a326483cc71f46dfca24dee9747d41af8}{NORTH\+\_\+\+RED}}~0b000001001
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Traffic Light Bitmasks -\/ South}\par
+\begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_a50364a3f74a4578c8604067e71cea7ad}{SOUTH\+\_\+\+GREEN}}~0b00001100
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_abd77d7525e8a4d4e438f4dd43615d00e}{SOUTH\+\_\+\+YELLOW}}~0b00001010
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_aead8ca2c3bedfd35f77a672c256ab455}{SOUTH\+\_\+\+RED}}~0b00001001
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Help constants}\par
+{\em Readability macros for states and logic. }\begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_a6a3a39d7ab88e59eb6d2a8b034890075}{DETECTED}}~0
 \item 
@@ -36,6 +53,7 @@
 \item 
 \#define \mbox{\hyperlink{trafficstates_8h_a996bde01ecac342918f0a2c4e7ce7bd5}{NO}}~0
 \end{DoxyCompactItemize}
+\end{Indent}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -48,18 +66,18 @@ enum \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Traffi
 \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2ae71573d55e5715bbbb0c51f88a3fcfa8}{EW\+\_\+\+YELLOW}}
 , \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a5f748e7af4033a72d6ad2777e087de52}{EW\+\_\+\+RED}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Traffic lights states. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 uint8\+\_\+t \mbox{\hyperlink{trafficstates_8h_aedb2feb8591c670a3e39eafd0d7441e6}{greenlights}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}greenstart, uint32\+\_\+t greenstop)
-\item 
+\begin{DoxyCompactList}\small\item\em Keeps track of how long it has been green for the pedestrian. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{trafficstates_8h_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44}{update\+\_\+lights\+\_\+hardware}} (\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} states, uint8\+\_\+t blue\+\_\+status, uint8\+\_\+t green\+\_\+status)
-\item 
+\begin{DoxyCompactList}\small\item\em Updates the lights based on the current state. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{trafficstates_8h_acc9158c99f70e05fb113c44488058527}{update\+\_\+traffic\+\_\+states}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}start\+\_\+time, uint32\+\_\+t current\+\_\+time, \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} \texorpdfstring{$\ast$}{*}states, uint8\+\_\+t \texorpdfstring{$\ast$}{*}n\+\_\+ped\+\_\+wait, uint8\+\_\+t car\+\_\+ns, uint8\+\_\+t car\+\_\+ew)
-\item 
+\begin{DoxyCompactList}\small\item\em Main logic for changing between the trafficlights different states. The function takes action based on different flags and passed time to decide when to change to a different state. It handles priority rules and makes sure that the timedelays are followed. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{trafficstates_8h_a956485862221fd8cfc7af9fc46aa9cb1}{toggle\+\_\+bluelights}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}blinkstart, uint32\+\_\+t blinkstop)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em toggles status for the blue waiting light with toggle\+Freq ms. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -195,29 +213,33 @@ uint8\+\_\+t \mbox{\hyperlink{trafficstates_8h_acf2c8910e5ef71730f1b5eaaed6c496a
 {\footnotesize\ttfamily \label{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2} 
 enum \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}}}
 
+
+
+Traffic lights states. 
+
 \begin{DoxyEnumFields}[2]{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{NS\_GREEN@{NS\_GREEN}!trafficstates.h@{trafficstates.h}}\index{trafficstates.h@{trafficstates.h}!NS\_GREEN@{NS\_GREEN}}}\Hypertarget{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a4bf8bd9452bacec038cced633b312c9c}\label{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a4bf8bd9452bacec038cced633b312c9c} 
-NS\+\_\+\+GREEN&\\
+NS\+\_\+\+GREEN&Green light for North and South trafficlight. \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{NS\_YELLOW@{NS\_YELLOW}!trafficstates.h@{trafficstates.h}}\index{trafficstates.h@{trafficstates.h}!NS\_YELLOW@{NS\_YELLOW}}}\Hypertarget{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2aa4aed54f0af0e6f2d9b716c058a24903}\label{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2aa4aed54f0af0e6f2d9b716c058a24903} 
-NS\+\_\+\+YELLOW&\\
+NS\+\_\+\+YELLOW&Yellow light for North and South trafficlight. \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{NS\_RED@{NS\_RED}!trafficstates.h@{trafficstates.h}}\index{trafficstates.h@{trafficstates.h}!NS\_RED@{NS\_RED}}}\Hypertarget{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a0eca3f7bd820148dd02eaabc5dd14531}\label{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a0eca3f7bd820148dd02eaabc5dd14531} 
-NS\+\_\+\+RED&\\
+NS\+\_\+\+RED&Red light for North and South trafficlight. \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EW\_GREEN@{EW\_GREEN}!trafficstates.h@{trafficstates.h}}\index{trafficstates.h@{trafficstates.h}!EW\_GREEN@{EW\_GREEN}}}\Hypertarget{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2acabb5f5ec1c9fbe1899bb72db29b9151}\label{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2acabb5f5ec1c9fbe1899bb72db29b9151} 
-EW\+\_\+\+GREEN&\\
+EW\+\_\+\+GREEN&Green light for East and West trafficlight. \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EW\_YELLOW@{EW\_YELLOW}!trafficstates.h@{trafficstates.h}}\index{trafficstates.h@{trafficstates.h}!EW\_YELLOW@{EW\_YELLOW}}}\Hypertarget{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2ae71573d55e5715bbbb0c51f88a3fcfa8}\label{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2ae71573d55e5715bbbb0c51f88a3fcfa8} 
-EW\+\_\+\+YELLOW&\\
+EW\+\_\+\+YELLOW&Yellow light for East and West trafficlight. \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{EW\_RED@{EW\_RED}!trafficstates.h@{trafficstates.h}}\index{trafficstates.h@{trafficstates.h}!EW\_RED@{EW\_RED}}}\Hypertarget{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a5f748e7af4033a72d6ad2777e087de52}\label{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2a5f748e7af4033a72d6ad2777e087de52} 
-EW\+\_\+\+RED&\\
+EW\+\_\+\+RED&Red light for East and West trafficlight. \\
 \hline
 
 \end{DoxyEnumFields}
@@ -232,24 +254,92 @@ EW\+\_\+\+RED&\\
 {\footnotesize\ttfamily \label{trafficstates_8h_aedb2feb8591c670a3e39eafd0d7441e6} 
 uint8\+\_\+t greenlights (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{greenstart}{, }\item[{uint32\+\_\+t}]{greenstop}{}\end{DoxyParamCaption})}
 
+
+
+Keeps track of how long it has been green for the pedestrian. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em greenstart} & pointer \\
+\hline
+{\em greenstop} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Returns 1 as the pedestrian is allowed to walk. And 0 when time is up. 
+\end{DoxyReturn}
 \Hypertarget{trafficstates_8h_a956485862221fd8cfc7af9fc46aa9cb1}\index{trafficstates.h@{trafficstates.h}!toggle\_bluelights@{toggle\_bluelights}}
 \index{toggle\_bluelights@{toggle\_bluelights}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{toggle\_bluelights()}{toggle\_bluelights()}}
 {\footnotesize\ttfamily \label{trafficstates_8h_a956485862221fd8cfc7af9fc46aa9cb1} 
 uint8\+\_\+t toggle\+\_\+bluelights (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{blinkstart}{, }\item[{uint32\+\_\+t}]{blinkstop}{}\end{DoxyParamCaption})}
 
+
+
+toggles status for the blue waiting light with toggle\+Freq ms. 
+
+
+\begin{DoxyItemize}
+\item The function creates a blinking effect by comparing the time difference between blinkstart and blinkstop. If the difference is greater than or equal to toggle\+Freq the status is inverted for the blue light.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em blinkstart} & pointer \\
+\hline
+{\em blinkstop} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Returns the current status for the blue lgiht. 
+\end{DoxyReturn}
 \Hypertarget{trafficstates_8h_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44}\index{trafficstates.h@{trafficstates.h}!update\_lights\_hardware@{update\_lights\_hardware}}
 \index{update\_lights\_hardware@{update\_lights\_hardware}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{update\_lights\_hardware()}{update\_lights\_hardware()}}
 {\footnotesize\ttfamily \label{trafficstates_8h_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44} 
 void update\+\_\+lights\+\_\+hardware (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}}}]{states}{, }\item[{uint8\+\_\+t}]{blue\+\_\+status}{, }\item[{uint8\+\_\+t}]{green\+\_\+status}{}\end{DoxyParamCaption})}
 
-\Hypertarget{trafficstates_8h_acc9158c99f70e05fb113c44488058527}\index{trafficstates.h@{trafficstates.h}!update\_traffic\_states@{update\_traffic\_states}}
+
+
+Updates the lights based on the current state. 
+
+
+\begin{DoxyItemize}
+\item The function first decides the status for the pedestrian light and sends the correct bitcombination for both car and pedestrian signals to the shiftregisters. 
+\begin{DoxyParams}{Parameters}
+{\em states} & current state for the trafficlights (t.\+ex. NS\+\_\+\+GREEN, EW\+\_\+\+RED) \\
+\hline
+{\em blue\+\_\+status} & If the blue light should be on or off. \\
+\hline
+{\em green\+\_\+status} & If the green pedestrian light should be on or off. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{trafficstates_8h_acc9158c99f70e05fb113c44488058527}\index{trafficstates.h@{trafficstates.h}!update\_traffic\_states@{update\_traffic\_states}}
 \index{update\_traffic\_states@{update\_traffic\_states}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{update\_traffic\_states()}{update\_traffic\_states()}}
 {\footnotesize\ttfamily \label{trafficstates_8h_acc9158c99f70e05fb113c44488058527} 
 void update\+\_\+traffic\+\_\+states (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{start\+\_\+time}{, }\item[{uint32\+\_\+t}]{current\+\_\+time}{, }\item[{\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} \texorpdfstring{$\ast$}{*}}]{states}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{n\+\_\+ped\+\_\+wait}{, }\item[{uint8\+\_\+t}]{car\+\_\+ns}{, }\item[{uint8\+\_\+t}]{car\+\_\+ew}{}\end{DoxyParamCaption})}
 
+
+
+Main logic for changing between the trafficlights different states. The function takes action based on different flags and passed time to decide when to change to a different state. It handles priority rules and makes sure that the timedelays are followed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+time} & Pointer to the time when the current state started. \\
+\hline
+{\em current\+\_\+time} & The actual system time. \\
+\hline
+{\em states} & Pointer to current state \\
+\hline
+{\em n\+\_\+ped\+\_\+wait} & Pointer to flag that indicates if a pedestrian is waiting. \\
+\hline
+{\em car\+\_\+ns} & Flag for cars in North-\/\+South direction (1 = car is present) \\
+\hline
+{\em car\+\_\+ew} & Flag for cars in East-\/\+West direction (1 = car is present) \\
+\hline
+\end{DoxyParams}
 
 
 \label{doc-var-members}
@@ -261,7 +351,7 @@ void update\+\_\+traffic\+\_\+states (\begin{DoxyParamCaption}\item[{uint32\+\_\
 {\footnotesize\ttfamily \label{trafficstates_8h_aacd61ac1bbac156259774e474f6c501f} 
 uint32\+\_\+t green\+Delay\hspace{0.3cm}{\ttfamily [extern]}}
 
-\Hypertarget{trafficstates_8h_acf2c8910e5ef71730f1b5eaaed6c496a}\index{trafficstates.h@{trafficstates.h}!msg\_failed@{msg\_failed}}
+Duration of green light when no traffic is detected \Hypertarget{trafficstates_8h_acf2c8910e5ef71730f1b5eaaed6c496a}\index{trafficstates.h@{trafficstates.h}!msg\_failed@{msg\_failed}}
 \index{msg\_failed@{msg\_failed}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{msg\_failed}{msg\_failed}}
 {\footnotesize\ttfamily \label{trafficstates_8h_acf2c8910e5ef71730f1b5eaaed6c496a} 
@@ -273,45 +363,46 @@ Error code\+: Returns if Message-\/\+ID is invalid or value is outside limits \H
 {\footnotesize\ttfamily \label{trafficstates_8h_a6586bd3d35d808967fb8459f25922367} 
 uint8\+\_\+t msg\+\_\+success\hspace{0.3cm}{\ttfamily [extern]}}
 
-Success code\+: Returns if received command is valid \Hypertarget{trafficstates_8h_ae8af103831a49353d21ee13fa606a13f}\index{trafficstates.h@{trafficstates.h}!orangeDelay@{orangeDelay}}
+Success code\+: Returns if received UART data is valid \Hypertarget{trafficstates_8h_ae8af103831a49353d21ee13fa606a13f}\index{trafficstates.h@{trafficstates.h}!orangeDelay@{orangeDelay}}
 \index{orangeDelay@{orangeDelay}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{orangeDelay}{orangeDelay}}
 {\footnotesize\ttfamily \label{trafficstates_8h_ae8af103831a49353d21ee13fa606a13f} 
 uint32\+\_\+t orange\+Delay\hspace{0.3cm}{\ttfamily [extern]}}
 
-\Hypertarget{trafficstates_8h_afdc417d2e606c678717ae6c984959f3c}\index{trafficstates.h@{trafficstates.h}!ped\_green@{ped\_green}}
+Duration of orange light \Hypertarget{trafficstates_8h_afdc417d2e606c678717ae6c984959f3c}\index{trafficstates.h@{trafficstates.h}!ped\_green@{ped\_green}}
 \index{ped\_green@{ped\_green}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{ped\_green}{ped\_green}}
 {\footnotesize\ttfamily \label{trafficstates_8h_afdc417d2e606c678717ae6c984959f3c} 
 uint8\+\_\+t ped\+\_\+green\hspace{0.3cm}{\ttfamily [extern]}}
 
-\Hypertarget{trafficstates_8h_a6b59f75369700988fa3f2dfa5c225354}\index{trafficstates.h@{trafficstates.h}!pedestrianDelay@{pedestrianDelay}}
+Logic flag\+: Active when pedestrian light is green. \Hypertarget{trafficstates_8h_a6b59f75369700988fa3f2dfa5c225354}\index{trafficstates.h@{trafficstates.h}!pedestrianDelay@{pedestrianDelay}}
 \index{pedestrianDelay@{pedestrianDelay}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{pedestrianDelay}{pedestrianDelay}}
 {\footnotesize\ttfamily \label{trafficstates_8h_a6b59f75369700988fa3f2dfa5c225354} 
 uint32\+\_\+t pedestrian\+Delay\hspace{0.3cm}{\ttfamily [extern]}}
 
-\Hypertarget{trafficstates_8h_a62170ad8bb4cb861ba9b2ff06d8a97c3}\index{trafficstates.h@{trafficstates.h}!redDelay@{redDelay}}
+Maximum allowed time from pedestrian pressed until car lanes shows red (ms). \Hypertarget{trafficstates_8h_a62170ad8bb4cb861ba9b2ff06d8a97c3}\index{trafficstates.h@{trafficstates.h}!redDelay@{redDelay}}
 \index{redDelay@{redDelay}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{redDelay}{redDelay}}
 {\footnotesize\ttfamily \label{trafficstates_8h_a62170ad8bb4cb861ba9b2ff06d8a97c3} 
 uint32\+\_\+t red\+Delay\hspace{0.3cm}{\ttfamily [extern]}}
 
-\Hypertarget{trafficstates_8h_aa42e6e3c5fb6a18cd287a0167a150602}\index{trafficstates.h@{trafficstates.h}!redDelayMax@{redDelayMax}}
+Duration of red light \Hypertarget{trafficstates_8h_aa42e6e3c5fb6a18cd287a0167a150602}\index{trafficstates.h@{trafficstates.h}!redDelayMax@{redDelayMax}}
 \index{redDelayMax@{redDelayMax}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{redDelayMax}{redDelayMax}}
 {\footnotesize\ttfamily \label{trafficstates_8h_aa42e6e3c5fb6a18cd287a0167a150602} 
 uint32\+\_\+t red\+Delay\+Max\hspace{0.3cm}{\ttfamily [extern]}}
 
-\Hypertarget{trafficstates_8h_a4fdd2968a38cf6b3344d0c9ce29f3b27}\index{trafficstates.h@{trafficstates.h}!toggleFreq@{toggleFreq}}
+Maximum allowed time a lane stays red when traffic is waiting \Hypertarget{trafficstates_8h_a4fdd2968a38cf6b3344d0c9ce29f3b27}\index{trafficstates.h@{trafficstates.h}!toggleFreq@{toggleFreq}}
 \index{toggleFreq@{toggleFreq}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{toggleFreq}{toggleFreq}}
 {\footnotesize\ttfamily \label{trafficstates_8h_a4fdd2968a38cf6b3344d0c9ce29f3b27} 
 uint32\+\_\+t toggle\+Freq\hspace{0.3cm}{\ttfamily [extern]}}
 
-\Hypertarget{trafficstates_8h_a30db9cbd5592bcc1e9c0132e03d22021}\index{trafficstates.h@{trafficstates.h}!walkingDelay@{walkingDelay}}
+Frequency for flashing warning lights (ms). \Hypertarget{trafficstates_8h_a30db9cbd5592bcc1e9c0132e03d22021}\index{trafficstates.h@{trafficstates.h}!walkingDelay@{walkingDelay}}
 \index{walkingDelay@{walkingDelay}!trafficstates.h@{trafficstates.h}}
 \doxysubsubsection{\texorpdfstring{walkingDelay}{walkingDelay}}
 {\footnotesize\ttfamily \label{trafficstates_8h_a30db9cbd5592bcc1e9c0132e03d22021} 
 uint32\+\_\+t walking\+Delay\hspace{0.3cm}{\ttfamily [extern]}}
 
+Duration of green light for crosswalk 

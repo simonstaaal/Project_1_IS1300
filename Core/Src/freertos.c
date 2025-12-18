@@ -1,5 +1,12 @@
-/* USER CODE BEGIN Header */
 /**
+ * @file freertos.c
+ * @brief Logic and task management for the Traffic Light System.
+ * @details This file handles the FreeRTOS tasks, mutexes for shared data,
+ * and the UART communication protocol.
+ */
+
+/* USER CODE BEGIN Header */
+/*
   ******************************************************************************
   * File Name          : freertos.c
   * Description        : Code for freertos applications
@@ -48,35 +55,45 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 
-/** @name UART communication */
-/** @{ */
+/**  @name UART Communication
+ *  Variables and data buffer for serial communication.
+ * @{ */
 uint8_t msg_failed = 0x00;  /**< Error code: Returns if Message-ID is invalid or value is outside limits */
-uint8_t msg_success = 0x01; /**< Success code: Returns if received command is valid */
+uint8_t msg_success = 0x01; /**< Success code: Returns if received UART data is valid */
 uint8_t rx_data[4];			/**< Buffer for incomming UART data. [0] = ID , [1] = 0x00 , [2],[3] = value */
 ITStatus UartReady = RESET; /**< is set to SET by UART callback when a package is recieved. */
 /** @} */
 
-//Variables changed by UART
- uint32_t toggleFreq = 200;
- uint32_t pedestrianDelay = 5000;
- uint32_t walkingDelay = 4000;
- uint32_t orangeDelay = 3000;
+/** @name Timing parameters
+ * Shared timing variables updated via UART and read by TrafficState.
+ * @{ */
+ uint32_t toggleFreq = 200; /**< Frequency for flashing warning lights (ms). */
+ uint32_t pedestrianDelay = 5000; /**< Maximum allowed time from  pedestrian pressed until car lanes shows red (ms). */
+ uint32_t walkingDelay = 4000; /**< Duration of green light for crosswalk*/
+ uint32_t orangeDelay = 3000; /**< Duration of orange light */
+ uint32_t greenDelay = 3000; /**< Duration of green light when no traffic is detected */
+ uint32_t redDelay = 500;   /**< Duration of red light */
+ uint32_t redDelayMax = 6000; /**< Maximum allowed time a lane stays red when traffic is waiting  */
+ /** @} */
 
-//Delay variables for specific lights
-uint32_t greenDelay = 3000;
-uint32_t redDelay = 500;
-uint32_t redDelayMax = 6000;
 
 
-//flags for indication of incomming traffic/ pedestrians
-uint8_t is_car_ns_waiting = 0;
-uint8_t is_car_ew_waiting = 0;
-uint8_t is_ped_ns_waiting = 0;
-uint8_t ped_green = 0;
 
+
+ /** @name Traffic flags
+  * Status flags for buttons and switches on the traffic shield
+  * @{ */
+uint8_t is_car_ns_waiting = 0; /**< Status flag: Vehicle detected North/South. */
+uint8_t is_car_ew_waiting = 0; /**< Status flag: Vehicle detected East/West. */
+uint8_t is_ped_ns_waiting = 0; /**< Status flag: Pedestrian button pressed. */
+uint8_t ped_green = 0; 		   /**< Logic flag: Active when pedestrian light is green. */
+/** @} */
 
 
 /* USER CODE END Variables */
+/** @name FREERTOS Resources
+ * Declared threads and Mutex
+ */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
@@ -85,24 +102,25 @@ const osThreadAttr_t defaultTask_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for TrafficStates */
-osThreadId_t TrafficStatesHandle;
+osThreadId_t TrafficStatesHandle; /**< Handle for the main state machine task. */
 const osThreadAttr_t TrafficStates_attributes = {
   .name = "TrafficStates",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for UserInput */
-osThreadId_t UserInputHandle;
+osThreadId_t UserInputHandle; /**< Handle for the inputs from switches and buttons*/
 const osThreadAttr_t UserInput_attributes = {
   .name = "UserInput",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
 /* Definitions for SharedData */
-osMutexId_t SharedDataHandle;
+osMutexId_t SharedDataHandle; /**< Mutex to protect flags from race condition */
 const osMutexAttr_t SharedData_attributes = {
   .name = "SharedData"
 };
+/** @} */
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -115,7 +133,7 @@ void Userinputs(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
-/**
+/*
   * @brief  FreeRTOS initialization
   * @param  None
   * @retval None
@@ -165,7 +183,7 @@ void MX_FREERTOS_Init(void) {
 }
 
 /* USER CODE BEGIN Header_StartDefaultTask */
-/**
+/*
   * @brief  Function implementing the defaultTask thread.
   * @param  argument: Not used
   * @retval None
@@ -184,7 +202,13 @@ void StartDefaultTask(void *argument)
 
 /* USER CODE BEGIN Header_TrafficState */
 /**
-* @brief Function implementing the TrafficStates thread.
+* @brief Main logic task: Hanldles the traffic lights transitions and updates hardware.
+* It performs the following steps:
+* 1. Updates timing parameters and check for incomming UART data.
+* 2. Using Mutex to safely read global variables from the userinput task
+* 3. Calls update_traffic_states() to decide if the lights should change colour based on timers and inputs from buttons or switches.
+* 4. Controls the extra lights such as  the blinking blue light for people waiting and the green light for walking.
+* 5. Turns the actual LEDs on or off to show the correct traffic light colors
 * @param argument: Not used
 * @retval None
 */
@@ -269,7 +293,12 @@ void TrafficState(void *argument)
 
 /* USER CODE BEGIN Header_Userinputs */
 /**
-* @brief Function implementing the UserInput thread.
+* @brief User input task: Register if someone has pressed the pedestrian button or vehicles are present.
+* It performs the following:
+* 1. Check if a pedestrian has pressed a button.
+* 2. Check if a car is waiting in the North-South lane.
+* 3. Check if a car is waiting in the East-West lane.
+* 4. Uses a mutex to safely update the global variables
 * @param argument: Not used
 * @retval None
 */
@@ -332,6 +361,15 @@ void Userinputs(void *argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+/**
+* @brief UART Callback: Runs automatically when a full message is received.
+* * This function handles the finished data transfer:
+* 1. Sets the 'UartReady' flag to tell the main brain that new data is waiting.
+* 2. Starts a new listen mode so the system can receive the next 4 bytes.
+*
+* @param huart Pointer to the UART hardware structure.
+* @retval None
+*/
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart2)
 {

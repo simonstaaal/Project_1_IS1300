@@ -6,20 +6,20 @@
 \begin{DoxyCompactItemize}
 \item 
 uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_a956485862221fd8cfc7af9fc46aa9cb1}{toggle\+\_\+bluelights}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}blinkstart, uint32\+\_\+t blinkstop)
-\item 
+\begin{DoxyCompactList}\small\item\em toggles status for the blue waiting light with toggle\+Freq ms. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_aedb2feb8591c670a3e39eafd0d7441e6}{greenlights}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}greenstart, uint32\+\_\+t greenstop)
-\item 
+\begin{DoxyCompactList}\small\item\em Keeps track of how long it has been green for the pedestrian. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{trafficstates_8c_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44}{update\+\_\+lights\+\_\+hardware}} (\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} states, uint8\+\_\+t blue\+\_\+status, uint8\+\_\+t green\+\_\+status)
-\item 
+\begin{DoxyCompactList}\small\item\em Updates the lights based on the current state. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{trafficstates_8c_acc9158c99f70e05fb113c44488058527}{update\+\_\+traffic\+\_\+states}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}start\+\_\+time, uint32\+\_\+t current\+\_\+time, \mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} \texorpdfstring{$\ast$}{*}states, uint8\+\_\+t \texorpdfstring{$\ast$}{*}n\+\_\+ped\+\_\+wait, uint8\+\_\+t car\+\_\+ns, uint8\+\_\+t car\+\_\+ew)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main logic for changing between the trafficlights different states. The function takes action based on different flags and passed time to decide when to change to a different state. It handles priority rules and makes sure that the timedelays are followed. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_ae5198cfaaa24f1935ed35da04239da4f}{changedirection}} = 0
-\item 
+\begin{DoxyCompactList}\small\item\em Flag to control if the light should switch direction. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_ae9b5377ed63d77910e5453e5b44e00df}{pedestrianlight}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Bitmask for pedestrianlight signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \label{doc-func-members}
@@ -31,24 +31,92 @@ uint8\+\_\+t \mbox{\hyperlink{trafficstates_8c_ae9b5377ed63d77910e5453e5b44e00df
 {\footnotesize\ttfamily \label{trafficstates_8c_aedb2feb8591c670a3e39eafd0d7441e6} 
 uint8\+\_\+t greenlights (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{greenstart}{, }\item[{uint32\+\_\+t}]{greenstop}{}\end{DoxyParamCaption})}
 
+
+
+Keeps track of how long it has been green for the pedestrian. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em greenstart} & pointer \\
+\hline
+{\em greenstop} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Returns 1 as the pedestrian is allowed to walk. And 0 when time is up. 
+\end{DoxyReturn}
 \Hypertarget{trafficstates_8c_a956485862221fd8cfc7af9fc46aa9cb1}\index{trafficstates.c@{trafficstates.c}!toggle\_bluelights@{toggle\_bluelights}}
 \index{toggle\_bluelights@{toggle\_bluelights}!trafficstates.c@{trafficstates.c}}
 \doxysubsubsection{\texorpdfstring{toggle\_bluelights()}{toggle\_bluelights()}}
 {\footnotesize\ttfamily \label{trafficstates_8c_a956485862221fd8cfc7af9fc46aa9cb1} 
 uint8\+\_\+t toggle\+\_\+bluelights (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{blinkstart}{, }\item[{uint32\+\_\+t}]{blinkstop}{}\end{DoxyParamCaption})}
 
+
+
+toggles status for the blue waiting light with toggle\+Freq ms. 
+
+
+\begin{DoxyItemize}
+\item The function creates a blinking effect by comparing the time difference between blinkstart and blinkstop. If the difference is greater than or equal to toggle\+Freq the status is inverted for the blue light.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em blinkstart} & pointer \\
+\hline
+{\em blinkstop} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Returns the current status for the blue lgiht. 
+\end{DoxyReturn}
 \Hypertarget{trafficstates_8c_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44}\index{trafficstates.c@{trafficstates.c}!update\_lights\_hardware@{update\_lights\_hardware}}
 \index{update\_lights\_hardware@{update\_lights\_hardware}!trafficstates.c@{trafficstates.c}}
 \doxysubsubsection{\texorpdfstring{update\_lights\_hardware()}{update\_lights\_hardware()}}
 {\footnotesize\ttfamily \label{trafficstates_8c_a6a6fb52ff3d0ac7ef0c6f9bb7e24db44} 
 void update\+\_\+lights\+\_\+hardware (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}}}]{states}{, }\item[{uint8\+\_\+t}]{blue\+\_\+status}{, }\item[{uint8\+\_\+t}]{green\+\_\+status}{}\end{DoxyParamCaption})}
 
-\Hypertarget{trafficstates_8c_acc9158c99f70e05fb113c44488058527}\index{trafficstates.c@{trafficstates.c}!update\_traffic\_states@{update\_traffic\_states}}
+
+
+Updates the lights based on the current state. 
+
+
+\begin{DoxyItemize}
+\item The function first decides the status for the pedestrian light and sends the correct bitcombination for both car and pedestrian signals to the shiftregisters. 
+\begin{DoxyParams}{Parameters}
+{\em states} & current state for the trafficlights (t.\+ex. NS\+\_\+\+GREEN, EW\+\_\+\+RED) \\
+\hline
+{\em blue\+\_\+status} & If the blue light should be on or off. \\
+\hline
+{\em green\+\_\+status} & If the green pedestrian light should be on or off. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\Hypertarget{trafficstates_8c_acc9158c99f70e05fb113c44488058527}\index{trafficstates.c@{trafficstates.c}!update\_traffic\_states@{update\_traffic\_states}}
 \index{update\_traffic\_states@{update\_traffic\_states}!trafficstates.c@{trafficstates.c}}
 \doxysubsubsection{\texorpdfstring{update\_traffic\_states()}{update\_traffic\_states()}}
 {\footnotesize\ttfamily \label{trafficstates_8c_acc9158c99f70e05fb113c44488058527} 
 void update\+\_\+traffic\+\_\+states (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{start\+\_\+time}{, }\item[{uint32\+\_\+t}]{current\+\_\+time}{, }\item[{\mbox{\hyperlink{trafficstates_8h_a05c35bb0cc09f65229e7f028345512e2}{Trafficlights}} \texorpdfstring{$\ast$}{*}}]{states}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{n\+\_\+ped\+\_\+wait}{, }\item[{uint8\+\_\+t}]{car\+\_\+ns}{, }\item[{uint8\+\_\+t}]{car\+\_\+ew}{}\end{DoxyParamCaption})}
 
+
+
+Main logic for changing between the trafficlights different states. The function takes action based on different flags and passed time to decide when to change to a different state. It handles priority rules and makes sure that the timedelays are followed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+time} & Pointer to the time when the current state started. \\
+\hline
+{\em current\+\_\+time} & The actual system time. \\
+\hline
+{\em states} & Pointer to current state \\
+\hline
+{\em n\+\_\+ped\+\_\+wait} & Pointer to flag that indicates if a pedestrian is waiting. \\
+\hline
+{\em car\+\_\+ns} & Flag for cars in North-\/\+South direction (1 = car is present) \\
+\hline
+{\em car\+\_\+ew} & Flag for cars in East-\/\+West direction (1 = car is present) \\
+\hline
+\end{DoxyParams}
 
 
 \label{doc-var-members}
@@ -60,9 +128,18 @@ void update\+\_\+traffic\+\_\+states (\begin{DoxyParamCaption}\item[{uint32\+\_\
 {\footnotesize\ttfamily \label{trafficstates_8c_ae5198cfaaa24f1935ed35da04239da4f} 
 uint8\+\_\+t changedirection = 0}
 
+
+
+Flag to control if the light should switch direction. 
+
 \Hypertarget{trafficstates_8c_ae9b5377ed63d77910e5453e5b44e00df}\index{trafficstates.c@{trafficstates.c}!pedestrianlight@{pedestrianlight}}
 \index{pedestrianlight@{pedestrianlight}!trafficstates.c@{trafficstates.c}}
 \doxysubsubsection{\texorpdfstring{pedestrianlight}{pedestrianlight}}
 {\footnotesize\ttfamily \label{trafficstates_8c_ae9b5377ed63d77910e5453e5b44e00df} 
 uint8\+\_\+t pedestrianlight}
 
+
+
+Bitmask for pedestrianlight signal. 
+
+This variabel stores the bitcombination that are sent to the shiftregister to control the pedestrian lights 

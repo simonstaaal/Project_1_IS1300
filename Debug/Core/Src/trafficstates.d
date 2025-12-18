@@ -31,7 +31,7 @@ Core/Src/trafficstates.o: ../Core/Src/trafficstates.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  ../Core/Inc/main.h ../Core/Inc/spi.h ../Core/Inc/test.h \
- ../Core/Inc/trafficstates.h ../Core/Inc/trafficsystem.h \
+ ../Core/Inc/trafficstates.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
@@ -76,7 +76,6 @@ Core/Src/trafficstates.o: ../Core/Src/trafficstates.c \
 ../Core/Inc/spi.h:
 ../Core/Inc/test.h:
 ../Core/Inc/trafficstates.h:
-../Core/Inc/trafficsystem.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:

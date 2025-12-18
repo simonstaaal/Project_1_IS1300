@@ -12,7 +12,6 @@
 #include "io_handler.h"
 #include "spi.h"
 #include "trafficstates.h"
-#include "trafficsystem.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include "stm32l4xx_hal.h"

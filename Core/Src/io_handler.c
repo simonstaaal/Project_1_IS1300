@@ -6,6 +6,18 @@
  */
 #include "io_handler.h"
 
+
+
+/**
+ * @brief Sends lightstatus to the traffic shields shiftregister via SPI.
+ * Function packets tre bytes with data and transfer them to the shiftregister.
+
+ *
+ * @param r1 Data for the first register.
+ * @param r2 Data for the second register.
+ * @param r3 Data for the third register.
+ */
+
 void write_to_register(uint8_t r1,uint8_t r2, uint8_t r3) {
 
 			uint8_t databits[3];
@@ -28,6 +40,16 @@ void write_to_register(uint8_t r1,uint8_t r2, uint8_t r3) {
 
 }
 
+
+/**
+ * @brief Reads status from a specific button or switch.
+ * Function returns status for the chosen input.
+ *
+ * @param button The input that should be read (t.ex. NORTH_PEDESTRIAN eller CAR_NORTH).
+ * * @return bool
+ * - true: Switch is on / button is pressed.
+ * - false: Switch not on / button is not pressed.
+ */
 
 
 bool read_input(Inputs button){
@@ -66,9 +88,22 @@ bool read_input(Inputs button){
 }
 
 
+/**
+ * @brief Updates time variables via UART.
+ * Functions checks if value is not above the max limit. If the value is accepted the time variables are updated.
+ * Otherwise a error message will be sent.
+ * @param rx_data Pointer to recieved data:
+ */
+
 void update_time(uint8_t *rx_data){
 
 	uint16_t value = (rx_data[2] << 8) | rx_data[3];
+	uint16_t max_limit = 40000;
+
+	if(value > max_limit){
+		HAL_UART_Transmit(&huart2, &msg_failed, 1, HAL_MAX_DELAY);
+		return;
+	}
 
 	if(rx_data[0] == 0x01){
 		toggleFreq =  value;

@@ -8,14 +8,31 @@
 #include "test.h"
 
 
-
+/**
+ * @brief Flag to control if the light should switch direction.
+ */
 uint8_t changedirection = 0;
+
+
+/**
+ * @brief Bitmask for pedestrianlight signal.
+ *
+ * This variabel stores the bitcombination that are sent to the shiftregister to
+ * control the pedestrian lights
+ */
 uint8_t pedestrianlight;
 
 
-
-
-
+/**
+ * @brief toggles status for the blue waiting light with toggleFreq ms.
+ * * The function creates a blinking effect by comparing the time difference between blinkstart
+ * and blinkstop. If the difference is greater than or equal to toggleFreq the status is inverted
+ * for the blue light.
+ *
+ * @param blinkstart pointer
+ * @param blinkstop
+ * @return uint8_t Returns the current status for the blue lgiht.
+ */
 
 uint8_t toggle_bluelights(uint32_t *blinkstart, uint32_t blinkstop){
 
@@ -29,6 +46,15 @@ uint8_t toggle_bluelights(uint32_t *blinkstart, uint32_t blinkstop){
 	return blue_on;
 
 }
+
+/**
+ * @brief Keeps track of how long it has been green for the pedestrian
+ *
+ * @param greenstart pointer
+ * @param greenstop
+ * @return uint8_t Returns 1 as the pedestrian is allowed to walk. And 0 when time is up.
+ */
+
 uint8_t greenlights(uint32_t *greenstart, uint32_t greenstop){
 	uint8_t green_on = 1;
 
@@ -37,6 +63,16 @@ uint8_t greenlights(uint32_t *greenstart, uint32_t greenstop){
 	}
 	return green_on;
 }
+
+
+/**
+ * @brief Updates the lights based on the current state.
+ * * The function first decides the status for the pedestrian light and sends
+ * the correct bitcombination for both car and pedestrian signals to the shiftregisters.
+ * @param states       current state for the trafficlights (t.ex. NS_GREEN, EW_RED)
+ * @param blue_status  If the blue light should be on or off.
+ * @param green_status If the green pedestrian light should be on or off.
+ */
 
 void update_lights_hardware(Trafficlights states, uint8_t blue_status, uint8_t green_status){
 	if(blue_status && !ped_green){
@@ -77,6 +113,21 @@ void update_lights_hardware(Trafficlights states, uint8_t blue_status, uint8_t g
 
 	}
 }
+
+
+/**
+ * @brief Main logic for changing between the trafficlights different states.
+ * The function takes action based on different flags and passed time to decide
+ * when to change to a different state. It handles priority rules and makes sure
+ * that the timedelays are followed
+ *
+ * @param start_time   Pointer to the time when the current state started.
+ * @param current_time The actual system time.
+ * @param states       Pointer to current state
+ * @param n_ped_wait   Pointer to flag that indicates if a pedestrian is waiting.
+ * @param car_ns       Flag for cars in North-South direction (1 = car is present)
+ * @param car_ew       Flag for cars in East-West direction (1 = car is present)
+ */
 
 void update_traffic_states(uint32_t *start_time, uint32_t current_time, Trafficlights *states, uint8_t *n_ped_wait, uint8_t car_ns, uint8_t car_ew){
 
@@ -289,6 +340,7 @@ void update_traffic_states(uint32_t *start_time, uint32_t current_time, Trafficl
         //Scenario 3
         else if(car_ns == 1 && car_ew == 0 && *n_ped_wait == 0){
         	if(passed_time >= redDelay)
+        		changedirection = 1; //??? TEST Kan vara rätt testa ordentligt senare, Vi fastnade i rött läge o ändligheten
                 *states = NS_YELLOW;
                 *start_time = current_time;
         }

@@ -111,12 +111,16 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#a18e1ff9f78a426cd8c15a98f20d78900a64f0e7d832c9ad8e162bf3f2962a337b">CAR_EAST</a>
 <br />
  }</td></tr>
+<tr class="memdesc:a18e1ff9f78a426cd8c15a98f20d78900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Different types of inputs from the traffic shield.  <a href="#a18e1ff9f78a426cd8c15a98f20d78900">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a23a41f50f12fc8fc2cbdbaf33b85aa57" id="r_a23a41f50f12fc8fc2cbdbaf33b85aa57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23a41f50f12fc8fc2cbdbaf33b85aa57">write_to_register</a> (uint8_t r1, uint8_t r2, uint8_t r3)</td></tr>
+<tr class="memdesc:a23a41f50f12fc8fc2cbdbaf33b85aa57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends lightstatus to the traffic shields shiftregister via SPI. Function packets tre bytes with data and transfer them to the shiftregister.  <br /></td></tr>
 <tr class="memitem:acd0618471cbce265113e30d6449495dd" id="r_acd0618471cbce265113e30d6449495dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd0618471cbce265113e30d6449495dd">read_input</a> (<a class="el" href="#a18e1ff9f78a426cd8c15a98f20d78900">Inputs</a> button)</td></tr>
+<tr class="memdesc:acd0618471cbce265113e30d6449495dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads status from a specific button or switch. Function returns status for the chosen input.  <br /></td></tr>
 <tr class="memitem:a7090eb01ca7a8fdab0df9eb9e3e7ce7f" id="r_a7090eb01ca7a8fdab0df9eb9e3e7ce7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7090eb01ca7a8fdab0df9eb9e3e7ce7f">update_time</a> (uint8_t *<a class="el" href="freertos_8c.html#a832bfefba0c3f651c05cfc21aad39dd0">rx_data</a>)</td></tr>
+<tr class="memdesc:a7090eb01ca7a8fdab0df9eb9e3e7ce7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates time variables via UART. Functions checks if value is not above the max limit. If the value is accepted the time variables are updated. Otherwise a error message will be sent.  <br /></td></tr>
 </table>
 <a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
 <a id="a18e1ff9f78a426cd8c15a98f20d78900" name="a18e1ff9f78a426cd8c15a98f20d78900"></a>
@@ -130,12 +134,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Different types of inputs from the traffic shield. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900a78bb15708c7ee8269dbed41902bb2974" name="a18e1ff9f78a426cd8c15a98f20d78900a78bb15708c7ee8269dbed41902bb2974"></a>NORTH_PEDESTRIAN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900a180fcd9e08050e8a0c56dcee55f9fd48" name="a18e1ff9f78a426cd8c15a98f20d78900a180fcd9e08050e8a0c56dcee55f9fd48"></a>CAR_NORTH&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900ac6562f9a06eb64928435a407996c15ed" name="a18e1ff9f78a426cd8c15a98f20d78900ac6562f9a06eb64928435a407996c15ed"></a>CAR_SOUTH&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900a6cbb4cafec51ae9f18d8f95692bef0cd" name="a18e1ff9f78a426cd8c15a98f20d78900a6cbb4cafec51ae9f18d8f95692bef0cd"></a>CAR_WEST&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900a64f0e7d832c9ad8e162bf3f2962a337b" name="a18e1ff9f78a426cd8c15a98f20d78900a64f0e7d832c9ad8e162bf3f2962a337b"></a>CAR_EAST&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900a78bb15708c7ee8269dbed41902bb2974" name="a18e1ff9f78a426cd8c15a98f20d78900a78bb15708c7ee8269dbed41902bb2974"></a>NORTH_PEDESTRIAN&#160;</td><td class="fielddoc"><p>Pushbutton 7 and 8 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900a180fcd9e08050e8a0c56dcee55f9fd48" name="a18e1ff9f78a426cd8c15a98f20d78900a180fcd9e08050e8a0c56dcee55f9fd48"></a>CAR_NORTH&#160;</td><td class="fielddoc"><p>Switch 4 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900ac6562f9a06eb64928435a407996c15ed" name="a18e1ff9f78a426cd8c15a98f20d78900ac6562f9a06eb64928435a407996c15ed"></a>CAR_SOUTH&#160;</td><td class="fielddoc"><p>Switch 2 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900a6cbb4cafec51ae9f18d8f95692bef0cd" name="a18e1ff9f78a426cd8c15a98f20d78900a6cbb4cafec51ae9f18d8f95692bef0cd"></a>CAR_WEST&#160;</td><td class="fielddoc"><p>Switch 1 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a18e1ff9f78a426cd8c15a98f20d78900a64f0e7d832c9ad8e162bf3f2962a337b" name="a18e1ff9f78a426cd8c15a98f20d78900a64f0e7d832c9ad8e162bf3f2962a337b"></a>CAR_EAST&#160;</td><td class="fielddoc"><p>Switch 3 </p>
+</td></tr>
 </table>
 
 </div>
@@ -156,6 +167,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Reads status from a specific button or switch. Function returns status for the chosen input. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">button</td><td>The input that should be read (t.ex. NORTH_PEDESTRIAN eller CAR_NORTH).<ul>
+<li></li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool<ul>
+<li>true: Switch is on / button is pressed.</li>
+<li>false: Switch not on / button is not pressed. </li>
+</ul>
+</dd></dl>
+
 </div>
 </div>
 <a id="a7090eb01ca7a8fdab0df9eb9e3e7ce7f" name="a7090eb01ca7a8fdab0df9eb9e3e7ce7f"></a>
@@ -172,6 +199,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Updates time variables via UART. Functions checks if value is not above the max limit. If the value is accepted the time variables are updated. Otherwise a error message will be sent. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rx_data</td><td>Pointer to recieved data: </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -198,6 +233,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sends lightstatus to the traffic shields shiftregister via SPI. Function packets tre bytes with data and transfer them to the shiftregister. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r1</td><td>Data for the first register. </td></tr>
+    <tr><td class="paramname">r2</td><td>Data for the second register. </td></tr>
+    <tr><td class="paramname">r3</td><td>Data for the third register. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

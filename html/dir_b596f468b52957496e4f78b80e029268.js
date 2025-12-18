@@ -13,6 +13,5 @@ var dir_b596f468b52957496e4f78b80e029268 =
     [ "system_stm32l4xx.c", "system__stm32l4xx_8c.html", "system__stm32l4xx_8c" ],
     [ "test.c", "test_8c.html", null ],
     [ "trafficstates.c", "trafficstates_8c.html", "trafficstates_8c" ],
-    [ "trafficsystem.c", "trafficsystem_8c.html", null ],
     [ "usart.c", "usart_8c.html", "usart_8c" ]
 ];

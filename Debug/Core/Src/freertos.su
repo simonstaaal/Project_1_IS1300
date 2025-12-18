@@ -1,5 +1,5 @@
-../Core/Src/freertos.c:126:6:MX_FREERTOS_Init	8	static
-../Core/Src/freertos.c:177:6:StartDefaultTask	16	static
-../Core/Src/freertos.c:195:6:TrafficState	40	static
-../Core/Src/freertos.c:280:6:Userinputs	24	static
-../Core/Src/freertos.c:339:6:HAL_UART_RxCpltCallback	16	static
+../Core/Src/freertos.c:141:6:MX_FREERTOS_Init	8	static
+../Core/Src/freertos.c:192:6:StartDefaultTask	16	static
+../Core/Src/freertos.c:216:6:TrafficState	40	static
+../Core/Src/freertos.c:306:6:Userinputs	24	static
+../Core/Src/freertos.c:374:6:HAL_UART_RxCpltCallback	16	static

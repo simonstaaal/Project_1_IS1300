@@ -17,13 +17,15 @@
 #include "usart.h"
 
 
-/*inputs*/
+/**
+ * @brief Different types of inputs from the traffic shield
+ */
 typedef enum{
-	NORTH_PEDESTRIAN,
-	CAR_NORTH,
-	CAR_SOUTH,
-	CAR_WEST,
-	CAR_EAST
+	NORTH_PEDESTRIAN,	 /**< Pushbutton 7 and 8*/
+	CAR_NORTH, 			/**< Switch 4 */
+	CAR_SOUTH,		   /**< Switch 2 */
+	CAR_WEST,		  /**< Switch 1 */
+	CAR_EAST		 /**<  Switch 3*/
 }Inputs;
 
 

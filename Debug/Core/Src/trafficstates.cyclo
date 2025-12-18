@@ -1,4 +1,4 @@
-../Core/Src/trafficstates.c:20:9:toggle_bluelights	2
-../Core/Src/trafficstates.c:32:9:greenlights	2
-../Core/Src/trafficstates.c:41:6:update_lights_hardware	10
-../Core/Src/trafficstates.c:81:6:update_traffic_states	196
+../Core/Src/trafficstates.c:37:9:toggle_bluelights	2
+../Core/Src/trafficstates.c:58:9:greenlights	2
+../Core/Src/trafficstates.c:77:6:update_lights_hardware	10
+../Core/Src/trafficstates.c:132:6:update_traffic_states	196

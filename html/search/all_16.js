@@ -26,7 +26,5 @@ var searchData=
   ['trafficstates_2ec_23',['trafficstates.c',['../trafficstates_8c.html',1,'']]],
   ['trafficstates_2eh_24',['trafficstates.h',['../trafficstates_8h.html',1,'']]],
   ['trafficstates_5fattributes_25',['TrafficStates_attributes',['../freertos_8c.html#a8bd115a2bb87df34db88d7249d7eeeb1',1,'freertos.c']]],
-  ['trafficstateshandle_26',['TrafficStatesHandle',['../freertos_8c.html#a97254cae64deebc5b0ba60f8f9a9c05f',1,'freertos.c']]],
-  ['trafficsystem_2ec_27',['trafficsystem.c',['../trafficsystem_8c.html',1,'']]],
-  ['trafficsystem_2eh_28',['trafficsystem.h',['../trafficsystem_8h.html',1,'']]]
+  ['trafficstateshandle_26',['TrafficStatesHandle',['../freertos_8c.html#a97254cae64deebc5b0ba60f8f9a9c05f',1,'freertos.c']]]
 ];
